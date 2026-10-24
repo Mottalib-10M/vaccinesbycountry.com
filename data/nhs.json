@@ -1,0 +1,16 @@
+{
+ "source": "NHS website, Travel vaccinations (nhs.uk/conditions/travel-vaccinations)",
+ "source_url": "https://www.nhs.uk/conditions/travel-vaccinations/",
+ "reviewed": "2026-04-30",
+ "retrieved_at": "2026-10-24",
+ "licence": "Facts quoted with their source (Crown copyright page); no text reproduced beyond short quotations.",
+ "free_quote": "You can get free NHS vaccinations, after completing a risk assessment form, at a GP surgery",
+ "paid_quote": "Vaccinations not routinely available on the NHS",
+ "advice_weeks": [4, 6],
+ "free": ["cholera", "polio", "hepA", "typhoid"],
+ "paid": ["hepB", "je", "rabies", "tbe", "yellowFever"],
+ "notes": {
+  "polio": "given as part of the combined Td/IPV vaccination",
+  "yellowFever": "only available at certain vaccination centres (list on the NaTHNaC website)"
+ }
+}

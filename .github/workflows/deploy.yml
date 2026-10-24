@@ -1,0 +1,78 @@
+name: CDC data refresh and deploy
+
+# Le 1er de chaque mois à 6 h UTC : scripts/update-data.mjs relit les ~244 pages destination du CDC (une requête
+# toutes les 20 secondes, comme le demande le Crawl-delay de cdc.gov, soit environ 81 minutes), puis
+# scripts/build-data.mjs régénère src/data/dest.json ; la construction échoue si une règle fièvre jaune ne colle
+# plus aux données. Chaque lundi : NADAC (prix des comprimés antipaludiques) et veille de la liste de prix CDC.
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+    - cron: "0 7 * * 1"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Reread CDC destination pages (monthly run and manual runs)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 6 1 * *'
+        run: node scripts/update-data.mjs --only=cdc
+
+      - name: Reread NADAC and watch the CDC price list (weekly run)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1'
+        run: |
+          node scripts/update-data.mjs --only=nadac
+          node scripts/update-data.mjs --only=pricelist
+
+      - name: Rebuild the data table
+        run: node scripts/build-data.mjs
+
+      - name: Tests
+        run: npx vitest run
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit the refreshed data
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/destinations.json data/nadac-antimalarials.json data/cdc-adult-price-list.json src/data/dest.json
+          git diff --cached --quiet || (git commit -m "Données CDC et NADAC relues le $(date -u +%F)" && git push)
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

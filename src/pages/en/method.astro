@@ -1,0 +1,59 @@
+---
+/** Method: sources, how CDC pages are read, the yellow fever rules, dates, prices, worked example, what is left out. Figures from the kit. */
+import PageLayout from '../../layouts/PageLayout.astro';
+import { route } from '../../i18n/routes';
+import { KIT as K } from '../../lib/kit';
+import { src, table, fee } from '../../lib/helpers';
+import { VALUE } from '../../content/home';
+import { breadcrumbSchema, webPageSchema } from '../../lib/seo';
+const lang = 'en';
+const path = route('method', lang);
+const title = 'Travel Vaccines Method 2026: CDC Pages, Border Rules, Prices';
+const description = `Travel vaccines method for 2026: how ${K.dests.length} CDC destination pages are read, how yellow fever rules are applied in order, and how dates and prices are computed.`;
+const RULES: Array<[string, string]> = [['all', 'Every arriving traveler'], ['fromRiskCountries', 'Travelers arriving from a country with risk'], ['fromListed', 'Travelers arriving from countries the rule names'], ['none', 'No requirement stated'], ['see text', 'Rule left to the CDC text']];
+const ruleRows = RULES.map(([k, l]) => [l, K.num(K.dests.filter((d) => d.yf?.[1] === k).length)]);
+const IDS = ['yellowFever', 'typhoid_inj', 'typhoid_oral', 'hepA', 'je', 'rabies', 'cholera', 'ipv', 'hepB_2dose', 'hepB_3dose'];
+const schedRows = IDS.map((id) => { const s = K.sched(id); return [K.VACCINE[id], s.doses_days.map((d) => `day ${d}`).join(', '), s.ready_days_after_last == null ? 'not stated by CDC' : `${K.num(s.ready_days_after_last)} days after the last dose`, `${K.num(K.lead(id))} days`]; });
+const deptRows = K.fees.map((f) => [`${f.name}, ${f.state}`, f.date ?? `undated, read ${K.FEES_DATE}`, K.num(Object.keys(f.prices).length)]);
+const ex = K.quote('orange-ca', ['hepA', 'typhoid_inj', 'yellowFever']);
+const of = K.fee('orange-ca');
+const ap = K.tablets('atovaquone-proguanil', 10);
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: 'Method and sources', description, path, lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'Method and sources', path }])]} breadcrumbs={[{ label: 'Method and sources' }]}>
+  <article class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Method and sources</h1>
+    <p><strong>Every vaccine line, border rule and malaria area on this site comes from CDC's Travelers' Health pages, read on {K.day(K.CDC_DATE)}; every price comes from a list a public body publishes, with its link and date.</strong> One script reads the sources, a second turns them into the data every page and calculator uses, and both run again each month.</p>
+    <p>{VALUE}</p>
+    <h2>1. CDC destination pages</h2>
+    <p>The {K.num(K.dests.length)} destination pages listed at <Fragment set:html={src('cdc_destinations', 'wwwnc.cdc.gov/travel/destinations/list')} /> were read one by one, with one request every 20 seconds as CDC's robots file asks. Two pages carry no vaccine table (Antarctica and the United States) and are left out. From each page we keep the vaccine lines word for word, the yellow fever recommendation and entry requirement, the malaria section (areas, resistance, species, drugs), the travel notices and the date CDC last reviewed the page. Each line is then given a level from its wording: <em>most travelers</em> when CDC recommends it for most travelers, <em>some travelers</em> when it lists who should get it, <em>consider</em> when it says the vaccine may be considered or should be discussed with a provider, <em>routine</em> for the routine vaccines line. The level only sorts the lines; the country pages quote CDC's full text in a separate block, so nothing is reworded.</p>
+    <p>CDC's material is in the public domain. Its <Fragment set:html={src('cdc_agency_materials', 'conditions of reuse')} /> ask for attribution, no suggestion of endorsement and no change to the substantive content, and to say that the material is available free of charge on cdc.gov. This site follows them: it names CDC as the source on every line it takes, states that it is not endorsed by CDC, the Agency for Toxic Substances and Disease Registry, the Department of Health and Human Services or the US government, and links to the CDC page it quotes.</p>
+    <h2>2. Yellow fever: the rule at each border</h2>
+    <p>The entry requirement is read in the "Country entry requirements" part of each page and sorted into one of these rules:</p>
+    <Fragment set:html={table(['Rule', 'Destinations'], ruleRows, `CDC destination pages, ${K.day(K.CDC_DATE)}.`, ['l', 'r'])} />
+    <p>When a rule names countries, each name is matched to a CDC destination; when it points to CDC's map of the African countries with risk throughout, as Costa Rica's does, those countries are added, and the build stops if their number no longer matches the rule. The minimum age and the clause on long airport transits are kept too. The calculator then walks the route: at each stop it checks the rule against the previous country (or the country where the trip starts), and it shows separately whether CDC recommends the vaccine for that destination. The two answers are never merged, since they often differ.</p>
+    <h2>3. Dates: the latest day to start</h2>
+    <p>Schedules come from the <Fragment set:html={src('yb_yellow_fever', 'CDC Yellow Book 2026')} /> chapters and, for hepatitis B, the <Fragment set:html={src('cdc_adult_schedule', 'CDC adult schedule notes')} />. For each vaccine we keep the days of each dose, the age rules (Japanese encephalitis has a shorter schedule from 18 to 65) and the days after the last dose before protection or a valid certificate. The latest start date is the departure date minus that total. Where CDC states no protection date, as for hepatitis B or chikungunya, the calculator shows the dose dates without one.</p>
+    <Fragment set:html={table(['Vaccine', 'Doses', 'Ready', 'Earliest start before departure'], schedRows, 'Adult schedules; hepatitis A counts one dose before the trip.', ['l', 'l', 'l', 'r'])} />
+    <h2>4. Prices: public lists only</h2>
+    <p>Few US clinics publish travel vaccine prices. County and city health departments do, and {K.num(K.fees.length)} lists were read for this site, each kept with its address, its date (or the day it was read when it has none), the price of each vaccine and the fees it states: consultation per visit or once, administration for the first shot and each additional one. The <Fragment set:html={src('cdc_price_list', `CDC adult vaccine price list of ${K.day(K.priceList.list_date)}`)} /> gives the manufacturer price to private buyers for the vaccines it covers. Malaria tablets are priced with the <Fragment set:html={src('nadac', 'NADAC survey')} />, which records what US pharmacies pay per tablet each week.</p>
+    <Fragment set:html={table(['Health department', 'List date', 'Prices read'], deptRows, undefined, ['l', 'l', 'r'])} />
+    <p>A trip total counts every dose of each series, the number of visits the schedule needs (doses given the same day share a visit), and the department's fees for those visits and injections. The range across departments uses only those that list every vaccine chosen; a department that does not list one is left out, never filled with an estimate.</p>
+    <h2>5. A worked example</h2>
+    <p>Hepatitis A, the typhoid shot and yellow fever at <Fragment set:html={fee('orange-ca', of.name)} />: the vaccines cost {K.usd(ex.vaccines)} for the full series (two hepatitis A doses), and the department's office visit and administration fees for two visits and four injections add {K.usd(ex.fees)}, so {K.usd(ex.total)} in all. Ten days in a malaria area with atovaquone-proguanil mean {K.num(ap.tablets)} tablets, about {K.usd(ap.acquisitionCost!)} at the NADAC price of {K.day(K.NADAC_DATE)}, before the pharmacy's margin.</p>
+    <h2>6. Figures left out</h2>
+    <ul>
+      <li>Private travel clinic and pharmacy prices: not published with a date, so not shown.</li>
+      <li>Prices in the United Kingdom, Canada and Australia: no dated official list was found; the UK pages say which jabs the NHS gives free, from the <Fragment set:html={src('nhs_travel', 'NHS travel vaccinations page')} />.</li>
+      <li>The WHO list of countries with yellow fever risk: its licence does not allow commercial reuse, so the site relies on CDC's own pages and maps.</li>
+      <li>Tafenoquine and rabies immune globulin: no public price found.</li>
+      <li>Covid-19 and mpox lines: shown in the CDC text, left out of the trip count and the cost.</li>
+    </ul>
+    <h2>7. Updates and limits</h2>
+    <ul>
+      <li>CDC pages are reread on the first day of each month, NADAC every Monday, and health department lists by hand each quarter; every page shows the date of its data.</li>
+      <li>Rules and outbreaks change between two readings. CDC asks travelers to confirm entry rules with the embassy or consulate of each country on the route.</li>
+      <li>Nothing here is medical advice. A doctor, nurse or pharmacist decides, with your record and health in view.</li>
+    </ul>
+    <p>Corrections: <a href={route('contact', lang)}>contact page</a>. Publisher: <a href={route('about', lang)}>about</a>.</p>
+  </article>
+</PageLayout>

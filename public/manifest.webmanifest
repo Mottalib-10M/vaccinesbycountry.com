@@ -1,0 +1,21 @@
+{
+ "name": "Vaccines by Country",
+ "short_name": "Vaccines by Country",
+ "description": "Travel vaccines by country from CDC advice: yellow fever rules by route, malaria tablets, the date to start each series and the published price of each shot.",
+ "start_url": "/en/",
+ "display": "standalone",
+ "background_color": "#ffffff",
+ "theme_color": "#0F5C4A",
+ "icons": [
+  {
+   "src": "/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ]
+}

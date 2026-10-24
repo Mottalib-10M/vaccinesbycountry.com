@@ -1,0 +1,89 @@
+{
+ "source": "NADAC (National Average Drug Acquisition Cost) 2026, Centers for Medicare & Medicaid Services, data.medicaid.gov",
+ "source_url": "https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704",
+ "licence": "Public domain: https://www.usa.gov/publicdomain/label/1.0/",
+ "note": "What retail pharmacies pay wholesalers per tablet, highest NDC of the latest weekly survey. The shelf price you pay is higher (dispensing fee and margin).",
+ "retrieved_at": "2026-10-24",
+ "items": [
+  {
+   "drug": "atovaquone-proguanil",
+   "ndc_description": "ATOVAQUONE-PROGUANIL 250-100 MG TABLET",
+   "per_unit_usd": 1.44997,
+   "per_unit_min_usd": 1.44997,
+   "pricing_unit": "EA",
+   "effective_date": "2026-10-21",
+   "as_of_date": "2026-10-21",
+   "ndc_count": 9
+  },
+  {
+   "drug": "atovaquone-proguanil-pediatric",
+   "ndc_description": "ATOVAQUONE-PROGUANIL 62.5-25",
+   "per_unit_usd": 0.88804,
+   "per_unit_min_usd": 0.88804,
+   "pricing_unit": "EA",
+   "effective_date": "2026-10-21",
+   "as_of_date": "2026-10-21",
+   "ndc_count": 2
+  },
+  {
+   "drug": "doxycycline",
+   "ndc_description": "DOXYCYCLINE HYCLATE 100 MG TAB",
+   "per_unit_usd": 0.11995,
+   "per_unit_min_usd": 0.11995,
+   "pricing_unit": "EA",
+   "effective_date": "2026-10-21",
+   "as_of_date": "2026-10-21",
+   "ndc_count": 40
+  },
+  {
+   "drug": "doxycycline-capsule",
+   "ndc_description": "DOXYCYCLINE HYCLATE 100 MG CAP",
+   "per_unit_usd": 0.10794,
+   "per_unit_min_usd": 0.10794,
+   "pricing_unit": "EA",
+   "effective_date": "2026-10-21",
+   "as_of_date": "2026-10-21",
+   "ndc_count": 21
+  },
+  {
+   "drug": "mefloquine",
+   "ndc_description": "MEFLOQUINE HCL 250 MG TABLET",
+   "per_unit_usd": 3.73125,
+   "per_unit_min_usd": 3.73125,
+   "pricing_unit": "EA",
+   "effective_date": "2026-10-21",
+   "as_of_date": "2026-10-21",
+   "ndc_count": 3
+  },
+  {
+   "drug": "chloroquine",
+   "ndc_description": "CHLOROQUINE PH 500 MG TABLET",
+   "per_unit_usd": 6.61183,
+   "per_unit_min_usd": 6.61183,
+   "pricing_unit": "EA",
+   "effective_date": "2026-10-21",
+   "as_of_date": "2026-10-21",
+   "ndc_count": 4
+  },
+  {
+   "drug": "chloroquine-250",
+   "ndc_description": "CHLOROQUINE PH 250 MG TABLET",
+   "per_unit_usd": 2.46296,
+   "per_unit_min_usd": 2.46296,
+   "pricing_unit": "EA",
+   "effective_date": "2026-10-21",
+   "as_of_date": "2026-10-21",
+   "ndc_count": 2
+  },
+  {
+   "drug": "primaquine",
+   "ndc_description": "PRIMAQUINE 26.3 MG TABLET",
+   "per_unit_usd": 1.96386,
+   "per_unit_min_usd": 1.96386,
+   "pricing_unit": "EA",
+   "effective_date": "2025-05-21",
+   "as_of_date": "2026-05-13",
+   "ndc_count": 3
+  }
+ ]
+}

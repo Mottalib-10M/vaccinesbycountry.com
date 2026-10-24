@@ -1,0 +1,66 @@
+---
+/**
+ * A destination: the trip checker set on the country, the folded answer, the country's own text
+ * (src/content/countries/<slug>.ts), then what CDC says, quoted word for word with its date and the attribution
+ * CDC asks for (cdc.gov/other/agencymaterials.html). The quoted block is CDC's text, so it carries data-chrome.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Clamp from './Clamp.astro';
+import Tool from './Tool.astro';
+import Body from './Body.astro';
+import { route, ROUTES } from '../i18n/routes';
+import { label } from '../i18n/nav';
+import { t } from '../i18n/ui';
+import { guideById, countryById, countryId } from '../lib/pages';
+import { helpers, ext, SOURCES } from '../lib/helpers';
+import { KIT as K } from '../lib/kit';
+import { fullDest } from '../lib/cdc-text';
+import { diseaseLabel } from '../lib/data';
+import { articleSchema, faqSchema, breadcrumbSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { AUTHOR_NAME } from '../data/site-config';
+import type { CountryDef } from '../lib/page-types';
+interface Props { def: CountryDef }
+const { def } = Astro.props;
+const lang = 'en';
+const ui = t(lang);
+const d = fullDest(def.slug);
+const id = countryId(def.slug);
+const path = route(id, lang);
+const jsonLd = [webApplicationSchema({ name: def.h1, description: def.description, path, lang }), articleSchema({ title: def.h1, description: def.description, path, lang }), webPageSchema({ name: def.h1, description: def.description, path, lang }), breadcrumbSchema([{ name: ui.breadcrumbHome, path: route('home', lang) }, { name: `Vaccines for ${d.name}`, path }])];
+if (def.faqs.length) jsonLd.push(faqSchema(def.faqs, lang));
+const card = (x: string) => guideById(x)?.card ?? countryById(x)?.intro ?? '';
+const related = def.related.filter((x) => ROUTES.some((q) => q.id === x)).map((x) => ({ href: route(x, lang), name: label(x), description: card(x) }));
+const ORDER = ['routine', 'covid19', 'hepA', 'hepB', 'typhoid', 'yellowFever', 'malaria', 'je', 'rabies', 'cholera', 'chikungunya', 'polio', 'measles'];
+const rank = (k: string) => { const i = ORDER.indexOf(k); return i < 0 ? 99 : i; };
+const rows = Object.entries(d.diseases).sort((a, b) => rank(a[0]) - rank(b[0]));
+const esc = (x: string) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const sources = [{ name: `CDC Travelers' Health: ${d.name} (page last reviewed ${d.reviewed ? K.day(d.reviewed) : 'undated'})`, url: d.url }, { name: SOURCES.yb_yellow_fever.label, url: SOURCES.yb_yellow_fever.url }, { name: SOURCES.yb_malaria.label, url: SOURCES.yb_malaria.url }];
+---
+<PageLayout title={def.title} description={def.description} lang={lang} jsonLd={jsonLd} faqs={def.faqs} related={related} sources={sources} breadcrumbs={[{ label: 'Countries' }, { label: d.name }]}>
+  <article class="min-w-0">
+    <header class="mb-4">
+      <h1 class="font-serif text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{def.h1}</h1>
+      <p class="mt-2 text-base text-navy-700 sm:text-lg">{def.intro}</p>
+    </header>
+    <div data-outil data-chrome class="mb-4"><Tool kind="trip" arg={{ s1: def.slug, ...(def.toolArg ?? {}) }} idPrefix={`c-${def.slug}`} /></div>
+    <p class="mb-6 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('method', lang)} class="underline hover:text-navy-900">{label('method')}</a> · CDC page reviewed {d.reviewed ? K.day(d.reviewed) : 'undated'}, read {K.day(K.CDC_DATE)}</p>
+    <Clamp text={def.resume} lang={lang} id={`clamp-${def.slug}`} class="mb-8" />
+    <Body html={def.body(helpers())} path={path} />
+    <section data-chrome class="mt-10 min-w-0 max-w-full overflow-x-auto" id="cdc">
+      <h2 class="font-serif text-2xl font-bold text-navy-900">What CDC says for {d.name}, word for word</h2>
+      <p class="mt-2 text-sm text-navy-700">Source: CDC, Travelers' Health destination page for {d.name}, {d.reviewed ? `page last reviewed ${K.day(d.reviewed)}` : 'undated'}, read on {K.day(K.CDC_DATE)}. The text is reproduced without change; it is available free of charge on {ext(d.url, 'cdc.gov')}. Its use here does not imply endorsement by CDC, ATSDR, HHS or the United States Government.</p>
+      {d.notices.length > 0 && <p class="mt-3 text-sm text-navy-800"><strong>Travel notices:</strong> {d.notices.map((n, i) => <>{i > 0 && ' · '}<a href={n.url} target="_blank" rel="nofollow noopener noreferrer" class="underline">Level {n.level}, {n.title}</a>{n.date && ` (${K.day(n.date)})`}</>)}</p>}
+      <div class="not-prose mt-4 overflow-x-auto">
+        <table class="journal w-full table-fixed text-sm">
+          <colgroup><col class="w-[32%] sm:w-[22%]" /><col /></colgroup>
+          <thead><tr><th scope="col" class="px-3 py-2 text-left">Disease</th><th scope="col" class="px-3 py-2 text-left">CDC wording</th></tr></thead>
+          <tbody>
+            {rows.map(([k, e]) => (
+              <tr><td class="border-b border-navy-100 px-3 py-2 align-top font-medium text-navy-900 [overflow-wrap:anywhere]">{e.label || diseaseLabel(k)}</td><td class="border-b border-navy-100 px-3 py-2 text-navy-800 [overflow-wrap:anywhere]"><Fragment set:html={e.text.map(esc).join('<br>')} /></td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </article>
+</PageLayout>

@@ -1,0 +1,103 @@
+{
+ "_lisezmoi": "Sources cited by the pages (key → official URL). Figures live in data/*.json, rebuilt by scripts/update-data.mjs and scripts/build-data.mjs.",
+ "year": 2026,
+ "retrieved_at": "2026-10-24",
+ "sources": {
+  "cdc_destinations": {
+   "url": "https://wwwnc.cdc.gov/travel/destinations/list",
+   "label": {
+    "en": "CDC Travelers' Health, destination pages (list of 244 destinations)"
+   }
+  },
+  "cdc_agency_materials": {
+   "url": "https://www.cdc.gov/other/agencymaterials.html",
+   "label": {
+    "en": "CDC, Use of agency materials (public domain and conditions of reuse)"
+   }
+  },
+  "yb_yellow_fever": {
+   "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/yellow-fever.html",
+   "label": {
+    "en": "CDC Yellow Book 2026, Yellow fever"
+   }
+  },
+  "yb_typhoid": {
+   "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/typhoid-and-paratyphoid-fever.html",
+   "label": {
+    "en": "CDC Yellow Book 2026, Typhoid and paratyphoid fever"
+   }
+  },
+  "yb_je": {
+   "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/japanese-encephalitis.html",
+   "label": {
+    "en": "CDC Yellow Book 2026, Japanese encephalitis"
+   }
+  },
+  "yb_rabies": {
+   "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/rabies.html",
+   "label": {
+    "en": "CDC Yellow Book 2026, Rabies"
+   }
+  },
+  "yb_hepa": {
+   "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/hepatitis-a.html",
+   "label": {
+    "en": "CDC Yellow Book 2026, Hepatitis A"
+   }
+  },
+  "yb_cholera": {
+   "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/cholera.html",
+   "label": {
+    "en": "CDC Yellow Book 2026, Cholera"
+   }
+  },
+  "yb_polio": {
+   "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/poliomyelitis.html",
+   "label": {
+    "en": "CDC Yellow Book 2026, Poliomyelitis"
+   }
+  },
+  "yb_malaria": {
+   "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/malaria.html",
+   "label": {
+    "en": "CDC Yellow Book 2026, Malaria (chemoprophylaxis regimens)"
+   }
+  },
+  "cdc_chik": {
+   "url": "https://www.cdc.gov/chikungunya/vaccines/index.html",
+   "label": {
+    "en": "CDC, Chikungunya vaccines"
+   }
+  },
+  "cdc_adult_schedule": {
+   "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-notes.html",
+   "label": {
+    "en": "CDC, Adult immunization schedule notes (hepatitis B series)"
+   }
+  },
+  "cdc_price_list": {
+   "url": "https://www.cdc.gov/vaccines-for-children/media/pdfs/2026/09/Adult-Vaccine-Price-List-10-01-26.pdf",
+   "label": {
+    "en": "CDC Adult Vaccine Price List of October 1, 2026"
+   }
+  },
+  "nadac": {
+   "url": "https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704",
+   "label": {
+    "en": "CMS, NADAC 2026 (National Average Drug Acquisition Cost), data.medicaid.gov"
+   }
+  },
+  "nhs_travel": {
+   "url": "https://www.nhs.uk/conditions/travel-vaccinations/",
+   "label": {
+    "en": "NHS, Travel vaccinations (page reviewed April 30, 2026)"
+   }
+  },
+  "cdc_hepa_vax": {
+   "url": "https://www.cdc.gov/hepatitis-a/vaccination/index.html",
+   "label": {
+    "en": "CDC, Hepatitis A vaccination (page of January 31, 2025)"
+   }
+  }
+ }
+}

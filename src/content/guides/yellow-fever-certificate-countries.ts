@@ -1,0 +1,47 @@
+import { defineGuide } from '../../lib/page-types';
+import { KIT as K } from '../../lib/kit';
+
+const RULE: Record<string, string> = { all: 'Every arriving traveler', fromRiskCountries: 'Travelers from countries with risk', fromListed: 'Travelers from the countries it names', 'see text': 'See the CDC text' };
+const REC: Record<string, string> = { recommended: 'Recommended', generallyNotRecommended: 'Generally not recommended', notRecommended: 'Not recommended' };
+const ask = K.dests.filter((d) => d.yf && d.yf[1] !== 'none').sort((a, b) => ['all', 'fromListed', 'fromRiskCountries', 'see text'].indexOf(a.yf![1]) - ['all', 'fromListed', 'fromRiskCountries', 'see text'].indexOf(b.yf![1]) || a.n.localeCompare(b.n));
+const all = K.yfAll(), fromRisk = K.yfFromRisk(), listed = K.dests.filter((d) => d.yf?.[1] === 'fromListed');
+const none = K.dests.filter((d) => d.yf?.[1] === 'none');
+const transit = ask.filter((d) => d.yf![5]);
+const age1 = ask.filter((d) => d.yf![4] === '1 year'), age9 = ask.filter((d) => d.yf![4] === '9 months');
+const reverse = ask.filter((d) => d.yf![1] !== 'all' && d.yf![0] !== 'recommended');
+
+export default defineGuide({
+  id: 'yellow-fever-certificate-countries', group: 'vaccines', order: 11, slug: 'yellow-fever-certificate-countries',
+  nav: 'Yellow fever certificate countries', card: 'Every country that asks for the yellow certificate, from whom, from what age, and transits.',
+  title: 'Yellow Fever Certificate Countries 2026: Full List by Rule',
+  description: `Yellow fever certificate countries in 2026: the ${all.length} that ask every traveler, the ${fromRisk.length + listed.length} that ask arrivals from risk countries, ages and transits, from CDC.`,
+  h1: 'Countries that require a yellow fever certificate',
+  intro: 'Choose the country you arrive in and where you come from: the checker applies its entry rule and says whether the certificate is required.',
+  resume: `The yellow International Certificate of Vaccination or Prophylaxis is checked at the border by ${K.num(ask.length)} of the ${K.num(K.dests.length)} destinations on CDC's pages, under one of three rules. ${K.num(all.length)} countries ask every arriving traveler, wherever they come from, almost all in tropical Africa plus Bolivia, Colombia and French Guiana. ${K.num(fromRisk.length)} ask only travelers arriving from a country with yellow fever risk, and ${K.num(transit.length)} of the rules on CDC's pages count an airport transit of more than 12 hours in such a country. ${K.num(listed.length)} more name the exact countries they check, such as Costa Rica and Ecuador. The other ${K.num(none.length)} destinations state no requirement. The minimum age differs: 9 months in ${K.num(age9.length)} rules, 1 year in ${K.num(age1.length)}. The certificate becomes valid ten days after vaccination and stays valid for life. The rule follows the route: the same traveler can need it in Kenya after Uganda and not after London. The table below gives every rule as CDC reported it on ${K.day(K.CDC_DATE)}.`,
+  body: (h) => `
+<h2>Three rules, and why they exist</h2>
+<p>Yellow fever entry rules come from the International Health Regulations, which allow a country to ask for proof of vaccination to keep the virus out. A country where the virus circulates often asks every visitor, to protect travelers and to limit spread. A country without the virus but with the Aedes mosquito that can carry it, as in much of Asia, the Middle East and the Caribbean, asks only travelers who come from a country with risk, since only they could bring the virus in. A few countries publish their own list of the countries they check rather than refer to the WHO list. None of these rules says anything about whether the vaccine is useful for the trip; that is CDC's recommendation, a separate line on each country page.</p>
+${h.mini('yf', { t: 'Check one border crossing', p: ['to', 'from'], d: { to: 'india', from: 'kenya' } })}
+<h2>The full list</h2>
+<p>The table lists every destination whose CDC page states a yellow fever entry requirement, grouped by rule. The age column is the minimum age the rule states, and the transit column marks rules that count a stay of more than 12 hours in an airport of a risk country. The last column is CDC's own vaccine advice for the country, which can point the other way.</p>
+${h.table(['Country', 'Who must show it', 'From age', 'Long transit counts', 'CDC vaccine advice'], ask.map((d) => [h.cdc(d.s, d.n), d.yf![1] === 'fromListed' ? `${RULE.fromListed} (${K.num(d.yf![3].length)})` : RULE[d.yf![1]], d.yf![4] ?? 'not stated', d.yf![5] ? 'yes' : 'not stated', REC[d.yf![0]] ?? 'See the CDC text']), `CDC destination pages, country entry requirements, read up to ${K.day(K.CDC_DATE)}. Rules change: CDC asks travelers to confirm them with the embassy.`, ['l', 'l', 'l', 'l', 'l'])}
+<h2>Countries that name their own list</h2>
+<p>${K.num(listed.length)} countries do not refer to the general list of countries with risk but name the ones they check: ${listed.map((d) => `${d.n} (${d.yf![3].map((x) => K.d(x).n).slice(0, 4).join(', ')}${d.yf![3].length > 4 ? ` and ${K.num(d.yf![3].length - 4)} more` : ''})`).join('; ')}. A traveler arriving from a country that is not named needs no certificate there, even if that country has some yellow fever risk. Those lists change more often than the general rule, after outbreaks or diplomatic decisions, which is a reason to read the CDC page close to departure and to confirm with the embassy. In the table, the number in brackets is the count of countries the rule names; the checker above applies the list itself.</p>
+<p>For ${K.num(ask.filter((d) => d.yf![1] === 'see text').length)} territories, the CDC page states a requirement in terms the site could not reduce to one of the three rules; the table sends to the CDC text for them.</p>
+<h2>When the rule and the advice disagree</h2>
+<p>${K.num(reverse.length)} countries ask some arrivals for a certificate although CDC does not recommend the vaccine for a visit there, India, Thailand and Tanzania among them. The reverse also happens: Kenya, where CDC recommends the vaccine for most areas, asks for the certificate only from travelers arriving from a risk country, so a traveler flying in from Europe or North America may enter without one and still be advised to have it. The two questions are answered separately, and the trip checker on the ${h.a('home', 'home page')} shows both for each stop of an itinerary.</p>
+<h2>The order of the stops</h2>
+<p>Because most rules depend on where the traveler arrives from, the order of an itinerary matters. A safari in Kenya followed by a beach week in Zanzibar can call for a certificate at the Tanzanian border; the reverse order may not. A connection of more than 12 hours in Nairobi or Addis Ababa on the way to Asia can trigger the rule of a country such as Thailand or India. A traveler without a valid certificate who meets a rule can be refused entry, vaccinated at the border, or quarantined; India, for example, can isolate travelers for up to six days. The ten days the certificate needs after vaccination make the timing part of the plan.</p>
+<h2>Exemptions and waivers</h2>
+<p>Most rules exempt infants below the age they state. A clinician can also sign a medical waiver on the certificate when the vaccine is contraindicated, for instance in pregnancy or with a weakened immune system. Countries usually accept it but are not obliged to, and some ask for a letter on letterhead as well. The ${h.a('yellow-fever-vaccine', 'yellow fever vaccine page')} covers who should not receive the vaccine, and the ${h.a('yellow-fever-vaccine-cost', 'price page')} what it costs in the United States.</p>
+`,
+  faqs: [
+    { q: 'Which countries require a yellow fever certificate from every traveler?', a: `On ${K.day(K.CDC_DATE)}, CDC's pages listed ${K.num(all.length)}: ${all.map((d) => d.n).join(', ')}. They ask for it whatever the country of departure, usually from the age of 9 months or 1 year.` },
+    { q: 'Do I need a yellow fever certificate for a transit?', a: `Sometimes. ${K.num(transit.length)} of the entry rules on CDC's pages count an airport transit of more than 12 hours in a country with yellow fever risk as if the traveler had come from there. A traveler who transits for longer than that, or leaves the airport, may need the certificate at the next border. Shorter transits are usually not counted.` },
+    { q: 'Is the yellow fever certificate valid for life?', a: 'Yes. Since 2016 the International Health Regulations treat a certificate as valid for the life of the person vaccinated, starting ten days after the vaccination. Countries may not ask for a booster as a condition of entry. Old certificates that show an expiry date are valid all the same.' },
+    { q: 'What happens if I arrive without a required yellow fever certificate?', a: 'The country decides. It can refuse entry, vaccinate the traveler at the border, or isolate them for up to six days, the incubation period; India states that last measure on its rule. Rules change, so CDC asks travelers to check with the embassy or consulate of each country on the route before departure.' },
+  ],
+  tool: 'yf', toolArg: { to: 'tanzania', from: 'kenya' },
+  related: ['yellow-fever-vaccine', 'yellow-fever-vaccine-cost', 'vaccines-for-africa', 'vaccines-for-south-america', 'country:india'],
+  sources: ['cdc_destinations', 'yb_yellow_fever'],
+});

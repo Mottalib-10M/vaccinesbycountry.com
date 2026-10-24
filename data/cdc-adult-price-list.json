@@ -1,0 +1,179 @@
+{
+ "source": "CDC Adult Vaccine Price List (CDC Vaccine Price Lists, Vaccines for Children program pages)",
+ "source_url": "https://www.cdc.gov/vaccines-for-children/media/pdfs/2026/09/Adult-Vaccine-Price-List-10-01-26.pdf",
+ "list_date": "2026-10-01",
+ "contract_end": "2027-06-30",
+ "retrieved_at": "2026-10-24",
+ "licence": "Public domain (U.S. federal government work), attribution to CDC: https://www.cdc.gov/other/agencymaterials.html",
+ "note": "Private sector cost per dose = manufacturer list price to private buyers, vaccine only, before any clinic administration or visit fee. CDC cost = federal contract price (includes federal excise tax). Not on the list: yellow fever, typhoid, rabies, Japanese encephalitis, cholera, chikungunya, tick-borne encephalitis.",
+ "items": [
+  {
+   "id": "ipv",
+   "vaccine": "Polio (IPV)",
+   "brand": "IPOL",
+   "manufacturer": "Sanofi",
+   "cdc_cost_per_dose_usd": 27.354,
+   "private_sector_cost_per_dose_usd": 47.811
+  },
+  {
+   "id": "hepA",
+   "vaccine": "Hepatitis A, adult",
+   "brand": "Vaqta",
+   "manufacturer": "Merck",
+   "cdc_cost_per_dose_usd": 51.284,
+   "private_sector_cost_per_dose_usd": 86.224
+  },
+  {
+   "id": "hepA",
+   "vaccine": "Hepatitis A, adult",
+   "brand": "Havrix",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 42.09,
+   "private_sector_cost_per_dose_usd": 89.567
+  },
+  {
+   "id": "hepAB",
+   "vaccine": "Hepatitis A + B, adult",
+   "brand": "Twinrix",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 81.014,
+   "private_sector_cost_per_dose_usd": 141.596
+  },
+  {
+   "id": "hepB",
+   "vaccine": "Hepatitis B, adult",
+   "brand": "Heplisav-B",
+   "manufacturer": "Sanofi",
+   "cdc_cost_per_dose_usd": 82.57,
+   "private_sector_cost_per_dose_usd": 165.85
+  },
+  {
+   "id": "hepB",
+   "vaccine": "Hepatitis B, adult",
+   "brand": "Engerix-B (vial)",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 33.138,
+   "private_sector_cost_per_dose_usd": 75.1
+  },
+  {
+   "id": "hepB",
+   "vaccine": "Hepatitis B, adult",
+   "brand": "Engerix-B (syringe)",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 37.657,
+   "private_sector_cost_per_dose_usd": 75.1
+  },
+  {
+   "id": "hepB",
+   "vaccine": "Hepatitis B, adult",
+   "brand": "Recombivax HB",
+   "manufacturer": "Merck",
+   "cdc_cost_per_dose_usd": 31.765,
+   "private_sector_cost_per_dose_usd": 78.645
+  },
+  {
+   "id": "mmr",
+   "vaccine": "Measles, mumps and rubella",
+   "brand": "M-M-R II",
+   "manufacturer": "Merck",
+   "cdc_cost_per_dose_usd": 59.0,
+   "private_sector_cost_per_dose_usd": 100.862
+  },
+  {
+   "id": "mmr",
+   "vaccine": "Measles, mumps and rubella",
+   "brand": "Priorix",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 56.069,
+   "private_sector_cost_per_dose_usd": 97.99
+  },
+  {
+   "id": "menACWY",
+   "vaccine": "Meningococcal conjugate ACWY",
+   "brand": "MenQuadfi",
+   "manufacturer": "Sanofi",
+   "cdc_cost_per_dose_usd": 80.345,
+   "private_sector_cost_per_dose_usd": 177.109
+  },
+  {
+   "id": "menACWY",
+   "vaccine": "Meningococcal conjugate ACWY",
+   "brand": "Menveo (one-vial)",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 80.345,
+   "private_sector_cost_per_dose_usd": 176.707
+  },
+  {
+   "id": "menABCWY",
+   "vaccine": "Meningococcal ABCWY",
+   "brand": "Penbraya",
+   "manufacturer": "Pfizer",
+   "cdc_cost_per_dose_usd": 160.988,
+   "private_sector_cost_per_dose_usd": 251.86
+  },
+  {
+   "id": "menABCWY",
+   "vaccine": "Meningococcal ABCWY",
+   "brand": "Penmenvy",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 173.072,
+   "private_sector_cost_per_dose_usd": 265.75
+  },
+  {
+   "id": "menB",
+   "vaccine": "Meningococcal B",
+   "brand": "Trumenba",
+   "manufacturer": "Pfizer",
+   "cdc_cost_per_dose_usd": 123.213,
+   "private_sector_cost_per_dose_usd": 225.91
+  },
+  {
+   "id": "menB",
+   "vaccine": "Meningococcal B",
+   "brand": "Bexsero",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 135.071,
+   "private_sector_cost_per_dose_usd": 251.309
+  },
+  {
+   "id": "mpox",
+   "vaccine": "Mpox",
+   "brand": "Jynneos",
+   "manufacturer": "Bavarian Nordic",
+   "cdc_cost_per_dose_usd": 188.659,
+   "private_sector_cost_per_dose_usd": 260.131
+  },
+  {
+   "id": "td",
+   "vaccine": "Tetanus and diphtheria (Td)",
+   "brand": "Tenivac",
+   "manufacturer": "Sanofi",
+   "cdc_cost_per_dose_usd": 22.842,
+   "private_sector_cost_per_dose_usd": 45.913
+  },
+  {
+   "id": "tdap",
+   "vaccine": "Tetanus, diphtheria, pertussis (Tdap)",
+   "brand": "Adacel",
+   "manufacturer": "Sanofi",
+   "cdc_cost_per_dose_usd": 29.348,
+   "private_sector_cost_per_dose_usd": 51.078
+  },
+  {
+   "id": "tdap",
+   "vaccine": "Tetanus, diphtheria, pertussis (Tdap)",
+   "brand": "Boostrix",
+   "manufacturer": "GlaxoSmithKline",
+   "cdc_cost_per_dose_usd": 29.348,
+   "private_sector_cost_per_dose_usd": 50.141
+  },
+  {
+   "id": "varicella",
+   "vaccine": "Chickenpox (varicella)",
+   "brand": "Varivax",
+   "manufacturer": "Merck",
+   "cdc_cost_per_dose_usd": 126.777,
+   "private_sector_cost_per_dose_usd": 201.683
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+---
+/** Every topic page (src/content/guides) and every destination page (src/content/countries). */
+import ContentPage from '../../components/ContentPage.astro';
+import CountryPage from '../../components/CountryPage.astro';
+import { GUIDES, COUNTRY_PAGES } from '../../lib/pages';
+import { countrySlugPath } from '../../i18n/routes';
+export function getStaticPaths() {
+  return [
+    ...GUIDES.map((page) => ({ params: { slug: page.slug }, props: { kind: 'g', def: page } })),
+    ...COUNTRY_PAGES.map((def) => ({ params: { slug: countrySlugPath(def.slug) }, props: { kind: 'c', def } })),
+  ];
+}
+const { kind, def } = Astro.props as { kind: 'g' | 'c'; def: any };
+---
+{kind === 'g' ? <ContentPage page={def} /> : <CountryPage def={def} />}

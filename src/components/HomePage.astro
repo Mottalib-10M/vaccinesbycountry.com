@@ -1,0 +1,62 @@
+---
+/**
+ * Home (the pillar): the itinerary checker first (up to three countries in order), the folded answer, then a
+ * "shot sheet" of the travel vaccines with their lead time and published prices, the yellow fever borders, the
+ * explanation in prose, and the country pages. Text: src/content/home.ts. Generated blocks carry data-chrome.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Clamp from './Clamp.astro';
+import Tool from './Tool.astro';
+import Body from './Body.astro';
+import { HOME, VALUE } from '../content/home';
+import { route } from '../i18n/routes';
+import { helpers, SOURCES } from '../lib/helpers';
+import { COUNTRY_PAGES, countryId, guideById } from '../lib/pages';
+import { KIT as K } from '../lib/kit';
+import { faqSchema, organizationSchema, websiteSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { LAST_UPDATED } from '../data/site-config';
+const lang = 'en';
+const x = HOME;
+const path = route('home', lang);
+const h = helpers();
+const sources = x.sources.map((k) => ({ name: SOURCES[k].label, url: SOURCES[k].url }));
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ name: x.h1, description: x.description, path, lang }), webApplicationSchema({ name: x.h1, description: x.description, path, lang }), faqSchema(x.faqs, lang)];
+const SHEET = [
+  { id: 'hepA', g: 'hepatitis-a-vaccine' }, { id: 'typhoid_inj', g: 'typhoid-vaccine' }, { id: 'yellowFever', g: 'yellow-fever-vaccine' },
+  { id: 'je', g: 'japanese-encephalitis-vaccine' }, { id: 'rabies', g: 'rabies-vaccine-for-travel' }, { id: 'cholera', g: 'cholera-vaccine' },
+];
+const sheet = SHEET.map(({ id, g }) => { const sc = K.sched(id); const p = K.price(sc.fee); return { id, g, doses: sc.doses_billed ? 1 : (sc.doses_before_travel ?? sc.doses_days.length), lead: K.lead(id), p }; });
+const yfAll = K.yfAll();
+---
+<PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={x.faqs} sources={sources}>
+  <header class="mb-4">
+    <h1 class="font-serif text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{x.h1}</h1>
+    <p class="mt-2 text-base text-navy-700 sm:text-lg">{x.intro}</p>
+  </header>
+  <div data-outil data-chrome><Tool kind="trip" idPrefix="home" /></div>
+  <p class="mt-3 text-sm text-navy-600">CDC destination pages read {K.day(K.CDC_DATE)} · {K.num(K.dests.length)} destinations · {K.num(K.fees.length)} public price lists · no form, no booking · <a href={route('method', lang)} class="underline">Method</a> · <a href={route('about', lang)} class="underline">Publisher</a> · updated <time datetime={LAST_UPDATED}>{K.day(LAST_UPDATED)}</time></p>
+  <p class="mt-3 text-navy-800">{VALUE}</p>
+  <Clamp text={x.resume} lang={lang} id="clamp-home" class="my-8" />
+  <section data-chrome class="mt-8">
+    <h2 class="font-serif text-2xl font-bold text-navy-900">The shot sheet: lead time and published price</h2>
+    <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {sheet.map((r) => (
+        <li class="rounded-md border-l-4 border-accent-600 bg-white px-4 py-3">
+          <p class="text-sm font-semibold text-navy-900">{guideById(r.g) ? <a href={route(r.g, lang)} class="text-accent-700 hover:underline">{K.VACCINE[r.id]}</a> : K.VACCINE[r.id]}</p>
+          <p class="mt-1 text-sm text-navy-700">{r.doses} dose{r.doses > 1 ? 's' : ''} before the trip · start {r.lead ? `${K.num(r.lead)} days ahead` : 'any day before'}</p>
+          <p class="mt-1 font-serif text-xl font-bold text-navy-900">{K.usd(r.p.median)} <span class="text-sm font-normal text-navy-600">median per dose, {K.usd(r.p.min)} to {K.usd(r.p.max)}</span></p>
+        </li>
+      ))}
+    </ul>
+  </section>
+  <section class="mt-8"><Body html={x.why(h)} path={path} /></section>
+  <section data-chrome class="mt-10">
+    <h2 class="font-serif text-xl font-bold text-navy-900">Borders that ask every traveler for a yellow fever certificate</h2>
+    <p class="mt-3 text-sm text-navy-700">{yfAll.map((d, i) => <>{i > 0 && ' · '}{COUNTRY_PAGES.some((c) => c.slug === d.s) ? <a href={route(countryId(d.s), lang)} class="text-accent-700 underline-offset-2 hover:underline">{d.n}</a> : d.n}</>)}</p>
+    <p class="mt-2 text-sm"><a href={route('yellow-fever-certificate-countries', lang)} class="text-navy-700 underline">Every border rule, and the ones that depend on where you arrive from</a></p>
+  </section>
+  <section class="mt-10" data-chrome>
+    <h2 class="font-serif text-xl font-bold text-navy-900">Country pages, with the CDC text quoted in full</h2>
+    <p class="mt-3 text-sm">{COUNTRY_PAGES.map((p, i) => <>{i > 0 && ' · '}<a href={route(countryId(p.slug), lang)} class="text-accent-700 underline-offset-2 hover:underline">{K.d(p.slug).n}</a></>)}</p>
+  </section>
+</PageLayout>

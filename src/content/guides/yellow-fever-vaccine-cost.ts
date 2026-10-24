@@ -1,0 +1,43 @@
+import { defineGuide } from '../../lib/page-types';
+import { KIT as K } from '../../lib/kit';
+
+const p = K.price('yellowFever');
+const rows = K.byDept(['yellowFever']);
+const r = K.range(['yellowFever']);
+const withFees = rows.filter((x) => x.q.fees > 0);
+
+export default defineGuide({
+  id: 'yellow-fever-vaccine-cost', group: 'cost', order: 10, slug: 'yellow-fever-vaccine-cost',
+  nav: 'Yellow fever vaccine cost', card: 'The self-pay price at public health departments, the fees on top, and why it costs what it does.',
+  title: 'Yellow Fever Vaccine Cost 2026: Prices at Health Departments',
+  description: `Yellow fever vaccine cost in 2026: ${K.usd(p.min)} to ${K.usd(p.max)} a dose at ${p.n} US health departments that publish a price, the visit fees on top, insurance and the certificate.`,
+  h1: 'Yellow fever vaccine cost',
+  intro: 'Pick a health department: the calculator adds its visit and administration fees to the yellow fever shot and shows the total for one visit.',
+  resume: `The yellow fever vaccine is one of the most expensive single shots on a travel list. At the ${K.num(p.n)} US county and city health departments whose self-pay price lists were read for this site, one dose costs ${K.usd(p.min)} to ${K.usd(p.max)}, with a median of ${K.usd(p.median)}. Some of them add a consultation or administration fee, which puts the total for one visit at ${K.usd(r.min)} to ${K.usd(r.max)}. Because one dose protects most people for life and the certificate is valid for life, it is usually a one-time cost. The vaccine is not on the CDC private-sector price list, and it can be given only at clinics designated by a state health department, so the price of a private travel clinic is set by the clinic and rarely published. Health insurance seldom covers travel-only vaccines, though some plans do; asking the plan before the visit is the first step. Every price below carries the date and the link of the list it comes from.`,
+  body: (h) => `
+<h2>The published prices, department by department</h2>
+<p>The table lists each health department with the price of one yellow fever dose and the fees it states for a single vaccine visit, cheapest total first. Prices are those printed on the department's own page or price sheet, for people paying themselves, on the date shown.</p>
+${h.table(['Health department', 'Dose', 'Fees for one visit', 'Total', 'Price list date'], rows.map((x) => [h.fee(x.f.id, `${x.f.name}, ${x.f.state}`), K.usd(x.q.vaccines), x.q.fees ? K.usd(x.q.fees) : 'none stated', K.usd(x.q.total), x.date]), `Yellow fever vaccine, self-pay, one dose and one visit. Sources: each department's price list, read ${K.day(K.FEES_DATE)}.`, ['l', 'r', 'r', 'r', 'l'])}
+<p>${K.num(withFees.length)} of the ${K.num(rows.length)} departments add a fee to the dose. The fees take three forms: a consultation billed per visit, a consultation billed only at the first visit, and an administration charge per injection, sometimes lower for each extra shot given the same day. Where a page says the price includes administration, or says nothing about fees, the table shows none stated; the clinic may still have a fee it does not print, which is a question to ask when calling.</p>
+<p>The gap between the cheapest and the dearest list is ${K.usd(rows[rows.length - 1].q.total - rows[0].q.total)} for the same vaccine and the same certificate. The difference comes from the fees as much as from the dose: a department with a lower dose price but a consultation fee can end up above one with a higher dose price that includes everything. Reading the whole line, not the dose alone, is the only fair comparison, and the calculator at the top of the page does that for any department in the table.</p>
+<h2>Why the yellow fever shot costs more</h2>
+<p>Three reasons push the price up. First, only one yellow fever vaccine is licensed in the United States, YF-VAX, and supply has been tight in past years; during one shortage, a vaccine licensed abroad, Stamaril, was used at a limited number of clinics, and one department in the table still names it. Second, only centers designated by the state health department may give it, because they hold the official stamp for the certificate, so there is less competition. Third, the vial holds several doses that must be used within an hour once opened, which is why some clinics give yellow fever on set days only and why a dose wasted is part of the cost.</p>
+<h2>What the price includes</h2>
+<p>A dose at a designated center comes with the International Certificate of Vaccination or Prophylaxis, the yellow booklet, filled in and stamped. One department in the table states that its price includes the certificate. A lost certificate is a cost of its own: the clinic that gave the shot can usually issue a duplicate from its records, and some charge for it. Travelers aged 60 and over may be asked for a consultation before a first dose, since CDC asks clinicians to weigh the risks carefully at that age; one department states that its consultation is required at 60 and over.</p>
+${h.mini('clinic', { t: 'Fees on top of the shot at one department', p: ['dept', 'sh'], d: { dept: 'fairfax-va', sh: 1, vi: 1 } })}
+<h2>Paying less, within the rules</h2>
+<p>Several health departments serve only residents of their county, so the cheapest line in the table is not open to everyone; the department pages state who they serve. Insurance coverage varies: some plans pay for travel vaccines, many do not, and a few pay only through a pharmacy. Combining yellow fever with the other shots of the trip in one visit avoids paying a consultation twice. A traveler who already has a valid certificate does not pay again: under the International Health Regulations a completed certificate is valid for life, so a booster is not needed to cross a border. Where a medical reason prevents vaccination, a clinician can sign a waiver instead, which costs only the consultation.</p>
+<h2>In the United Kingdom, Canada and Australia</h2>
+<p>Outside the United States, yellow fever is also a paid vaccine. The NHS lists it among the vaccinations not routinely available on the NHS, given at registered yellow fever centers that set their own price. In Canada and Australia, designated yellow fever clinics charge private prices. This site publishes only prices found on an official page with a date, and no such page was found for those countries, so their figures are left out rather than estimated.</p>
+<p>The ${h.a('yellow-fever-vaccine', 'yellow fever vaccine page')} covers who needs it and the ten day rule, and the ${h.a('travel-vaccines-cost', 'trip cost page')} adds it to a whole list.</p>
+`,
+  faqs: [
+    { q: 'How much does the yellow fever vaccine cost without insurance?', a: `At the ${K.num(p.n)} US health departments that publish a self-pay price, one dose costs ${K.usd(p.min)} to ${K.usd(p.max)}, with a median of ${K.usd(p.median)}, according to their price lists read on ${K.day(K.FEES_DATE)}. Some add a consultation or administration fee. Private travel clinics set their own prices and rarely publish them, so asking for the full price on the phone avoids surprises.` },
+    { q: 'Does insurance pay for the yellow fever vaccine?', a: 'Sometimes. Travel-only vaccines are often excluded from health plans, but some cover them, and a few pay only at certain clinics or pharmacies. Calling the plan with the vaccine name before the visit gives the answer. Several health departments state that travel vaccines may not be covered and ask for payment at the visit.' },
+    { q: 'Is the yellow fever vaccine a one-time cost?', a: 'For most people, yes. Under the International Health Regulations the certificate is valid for life, so no booster is needed for a border. CDC advises another dose only for women pregnant at their first dose, people who had a stem cell transplant after it, and people living with HIV when last vaccinated, which then means a second payment.' },
+    { q: 'Why do some clinics give yellow fever shots only on certain days?', a: 'The vaccine comes in multidose vials that must be used within an hour of opening, so clinics group appointments to avoid wasting doses. That also explains why some charge more. Planning the visit a month ahead leaves time to find a slot, since the certificate becomes valid only ten days after the shot.' },
+  ],
+  tool: 'cost', toolArg: { hepA: 'no', typ: 'none', yellowFever: 'yes' },
+  related: ['yellow-fever-vaccine', 'yellow-fever-certificate-countries', 'travel-clinic', 'travel-vaccines-cost', 'vaccines-for-africa'],
+  sources: ['yb_yellow_fever', 'cdc_price_list', 'nhs_travel'],
+});

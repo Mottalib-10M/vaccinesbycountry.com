@@ -1,0 +1,21 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { route } from '../../i18n/routes';
+import { AUTHOR_NAME, REVIEW_CYCLE_MONTHS } from '../../data/site-config';
+const lang = 'en';
+---
+<PageLayout title="Editorial policy of Vaccines by Country: CDC text, unchanged" description="How Vaccines by Country builds its pages: CDC destination advice quoted word for word with its date, public price lists cited one by one, and no personal medical advice." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Editorial policy</h1>
+    <h2>Three kinds of facts, kept apart</h2>
+    <p>The advice for a destination is CDC's: each country page quotes the CDC wording without change, with the date CDC last reviewed its page, and the trip checker only sorts that advice by level. Prices are facts published by US public health departments and by CDC: each comes with its department, its address and its date. Our own text explains how the pieces fit, worked examples included; it never replaces the CDC wording.</p>
+    <h2>How a figure reaches a page</h2>
+    <p>No price, dose count or lead time is typed into a text. Scripts read the CDC destination pages (one request every twenty seconds, as CDC's robots file asks), the NADAC drug cost file and the price lists, write data files, and every page computes its figures from them when the site is built.</p>
+    <h2>Health pages, written with care</h2>
+    <p>The site never says which vaccine a reader should get. It shows what CDC lists for a trip, what the vaccines cost and how long they take, so that the conversation with a clinician starts with the facts on the table. Pregnancy, age, a weak immune system, allergies and past vaccines change the answer, and only a clinician weighs them.</p>
+    <h2>Independence</h2>
+    <p>{AUTHOR_NAME} receives nothing from clinics, pharmacies, vaccine makers or insurers and links to none as a sponsor. Health departments are cited for their published prices only. There is no advertising today; if some is added it will be labeled and never placed above a tool.</p>
+    <h2>Review and corrections</h2>
+    <p>The CDC pages are reread every month and the price lists every quarter, and at least every {REVIEW_CYCLE_MONTHS} months for every source. A reported error is checked against the source and, once fixed, moves the date shown. Write through the <a href={route('contact', lang)}>contact page</a>; the steps are on the <a href={route('method', lang)}>method page</a>.</p>
+  </div>
+</PageLayout>

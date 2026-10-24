@@ -1,0 +1,244 @@
+{
+ "source": "CDC Yellow Book 2026 (Health Information for International Travel), disease chapters",
+ "licence": "Public domain (U.S. federal government work), attribution to CDC",
+ "retrieved_at": "2026-10-24",
+ "vaccines": [
+  {
+   "id": "yellowFever",
+   "fee": "yellowFever",
+   "doses_days": [
+    0
+   ],
+   "ready_days_after_last": 10,
+   "min_age_months": 9,
+   "booster": "Not recommended for most people (ICVP valid for life)",
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/yellow-fever.html",
+   "source_date": "2025-04-23",
+   "notes": "Certificate (ICVP) valid from 10 days after vaccination. Age 60+ is a precaution. YF-VAX is the only US-licensed vaccine."
+  },
+  {
+   "id": "typhoid_inj",
+   "fee": "typhoid_inj",
+   "doses_days": [
+    0
+   ],
+   "ready_days_after_last": 14,
+   "min_age_months": 24,
+   "booster": "Every 2 years if still at risk",
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/typhoid-and-paratyphoid-fever.html",
+   "source_date": "2025-04-23"
+  },
+  {
+   "id": "typhoid_oral",
+   "fee": "typhoid_oral",
+   "doses_days": [
+    0,
+    2,
+    4,
+    6
+   ],
+   "doses_billed": 1,
+   "ready_days_after_last": 7,
+   "min_age_months": 72,
+   "booster": "Every 5 years if still at risk",
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/typhoid-and-paratyphoid-fever.html",
+   "source_date": "2025-04-23",
+   "notes": "4 capsules, one every other day; one package billed."
+  },
+  {
+   "id": "je",
+   "fee": "je",
+   "doses_days": [
+    0,
+    28
+   ],
+   "doses_days_18_65": [
+    0,
+    7
+   ],
+   "ready_days_after_last": 7,
+   "min_age_months": 2,
+   "booster": "Third dose ≥1 year after the series if exposure continues",
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/japanese-encephalitis.html",
+   "source_date": "2026-02-20",
+   "notes": "Adults 18–65: second dose 7 to 28 days after the first."
+  },
+  {
+   "id": "rabies",
+   "fee": "rabies",
+   "doses_days": [
+    0,
+    7
+   ],
+   "ready_days_after_last": 0,
+   "booster": "Depends on ongoing risk",
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/rabies.html",
+   "source_date": "2025-04-23",
+   "notes": "After a bite, a vaccinated traveler needs 2 doses (days 0, 3) and no immune globulin; an unvaccinated one needs immune globulin plus 4 doses (days 0, 3, 7, 14)."
+  },
+  {
+   "id": "hepA",
+   "fee": "hepA",
+   "doses_days": [
+    0,
+    180
+   ],
+   "doses_before_travel": 1,
+   "ready_days_after_last": 0,
+   "min_age_months": 12,
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/hepatitis-a.html",
+   "source_date": "2025-04-23",
+   "notes": "Havrix 0 and 6–12 months, Vaqta 0 and 6–18 months; the second dose can follow the trip."
+  },
+  {
+   "id": "hepAB",
+   "fee": "hepAB",
+   "doses_days": [
+    0,
+    30,
+    180
+   ],
+   "doses_days_accelerated": [
+    0,
+    7,
+    21,
+    365
+   ],
+   "ready_days_after_last": 0,
+   "min_age_months": 216,
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/hepatitis-a.html",
+   "source_date": "2025-04-23",
+   "notes": "Twinrix standard 0, 1, 6 months; accelerated 0, 7, 21–30 days and 12 months."
+  },
+  {
+   "id": "cholera",
+   "fee": "cholera",
+   "doses_days": [
+    0
+   ],
+   "ready_days_after_last": 10,
+   "min_age_months": 24,
+   "max_age_years": 64,
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/cholera.html",
+   "source_date": "2025-04-23",
+   "notes": "Single oral dose ≥10 days before exposure; no food or drink 60 minutes before and after."
+  },
+  {
+   "id": "chikungunya",
+   "fee": "chikungunya",
+   "doses_days": [
+    0
+   ],
+   "ready_days_after_last": null,
+   "min_age_months": 144,
+   "source_url": "https://www.cdc.gov/chikungunya/vaccines/index.html",
+   "source_date": "2026-01-23",
+   "notes": "Vimkunya, single dose, age 12+; CDC gives no lead time."
+  },
+  {
+   "id": "ipv",
+   "fee": "ipv",
+   "doses_days": [
+    0
+   ],
+   "ready_days_after_last": 0,
+   "source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/poliomyelitis.html",
+   "source_date": "2025-04-23",
+   "notes": "Adults who completed the routine series: one lifetime booster before travel to areas with poliovirus circulating."
+  },
+  {
+   "id": "hepB_3dose",
+   "fee": "hepB_3dose",
+   "doses_days": [
+    0,
+    30,
+    180
+   ],
+   "ready_days_after_last": null,
+   "min_age_months": 216,
+   "source_url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-notes.html",
+   "source_date": "2025-07-02",
+   "notes": "CDC adult schedule: \"3-dose series Engerix-B, PreHevbrio, or Recombivax HB at 0, 1, 6 months (minimum intervals: dose 1 to dose 2 = 4 weeks; dose 2 to dose 3 = 8 weeks; dose 1 to dose 3 = 16 weeks)\". Months counted as 30 days. CDC gives no protection date: ready_days_after_last is null."
+  },
+  {
+   "id": "hepB_2dose",
+   "fee": "hepB_2dose",
+   "doses_days": [
+    0,
+    28
+   ],
+   "ready_days_after_last": null,
+   "min_age_months": 216,
+   "source_url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-notes.html",
+   "source_date": "2025-07-02",
+   "notes": "CDC adult schedule: \"2-dose series only applies when 2 doses of Heplisav-B are used at least 4 weeks apart\" (age 18+ per cdc.gov/hepatitis-b/hcp/vaccine-administration, reviewed 2025-09-18). CDC gives no protection date: ready_days_after_last is null."
+  }
+ ],
+ "antimalarials": [
+  {
+   "id": "atovaquone-proguanil",
+   "nadac": "atovaquone-proguanil",
+   "tablets_per_dose": 1,
+   "every_days": 1,
+   "start_days_before": 2,
+   "continue_days_after": 7,
+   "label": "Atovaquone-proguanil (adult tablet 250/100 mg)"
+  },
+  {
+   "id": "doxycycline",
+   "nadac": "doxycycline",
+   "tablets_per_dose": 1,
+   "every_days": 1,
+   "start_days_before": 2,
+   "continue_days_after": 28,
+   "label": "Doxycycline 100 mg"
+  },
+  {
+   "id": "mefloquine",
+   "nadac": "mefloquine",
+   "tablets_per_dose": 1,
+   "every_days": 7,
+   "start_days_before": 14,
+   "continue_days_after": 28,
+   "label": "Mefloquine 250 mg"
+  },
+  {
+   "id": "chloroquine",
+   "nadac": "chloroquine",
+   "tablets_per_dose": 1,
+   "every_days": 7,
+   "start_days_before": 14,
+   "continue_days_after": 28,
+   "label": "Chloroquine phosphate 500 mg salt"
+  },
+  {
+   "id": "primaquine",
+   "nadac": "primaquine",
+   "tablets_per_dose": 2,
+   "every_days": 1,
+   "start_days_before": 2,
+   "continue_days_after": 7,
+   "label": "Primaquine 30 mg base (2 × 26.3 mg tablets); G6PD test required"
+  },
+  {
+   "id": "tafenoquine",
+   "nadac": null,
+   "tablets_per_dose": 2,
+   "every_days": 7,
+   "loading_days": 3,
+   "start_days_before": 3,
+   "continue_days_after": 7,
+   "label": "Tafenoquine (Arakoda) 200 mg weekly; G6PD test required; no NADAC price published"
+  }
+ ],
+ "antimalarials_source_url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/malaria.html",
+ "antimalarials_source_date": "2025-04-23",
+ "antimalarials_note": "Start: CDC gives 1–2 days (atovaquone-proguanil, doxycycline, primaquine), 1–2 weeks (chloroquine), ≥2 weeks (mefloquine); the engine uses the longer bound. Adult doses only.",
+ "hepB_source": {
+  "schedule_url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-notes.html",
+  "schedule_date": "2025-07-02",
+  "admin_url": "https://www.cdc.gov/hepatitis-b/hcp/vaccine-administration/index.html",
+  "admin_date": "2025-09-18",
+  "note": "The Yellow Book hepatitis B chapter is no longer listed (404 on 2026-10-24); schedules taken from the CDC adult immunization schedule notes. PreHevbrio is under a voluntary recall (CDC page): not offered by the tool."
+ }
+}

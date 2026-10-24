@@ -1,0 +1,3 @@
+# « Japanese encephalitis » est le nom de la maladie et le terme-cle cherche (« japanese encephalitis vaccine ») :
+# le titre ne s'ouvre pas sur le pays Japon, le controle confond le prefixe « Japan ».
+japanese encephalitis

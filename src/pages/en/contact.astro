@@ -1,0 +1,27 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { CONTACT_EMAIL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { contactPageSchema } from '../../lib/seo';
+const lang = 'en';
+const path = route('contact', lang);
+const description = 'Write to Vaccines by Country about a price list, a CDC change or an entry rule that moved. E-mail only: no booking, no clinic referral, nothing passed on.';
+---
+<PageLayout title="Contact Vaccines by Country: report a price or rule change" description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Contact', description, path, lang })]} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Contact</h1>
+    <p>By e-mail: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. There is no form, no phone line and no appointment desk: the site books nothing and keeps no list of travelers.</p>
+    <h2>Messages that help</h2>
+    <ul>
+      <li>A health department that published a new self-pay price list for travel vaccines, with the address of the page or the PDF and its date.</li>
+      <li>A country page where our reading of the CDC level looks wrong next to the CDC wording quoted below it.</li>
+      <li>A yellow fever entry rule that changed, with the official source (ministry, embassy or the CDC page once updated).</li>
+      <li>Embedding the trip checker on a school, library, travel club or employer page: the code is on the <a href={route('widget', lang)}>embed page</a>.</li>
+    </ul>
+    <h2>What we cannot answer</h2>
+    <p>Which vaccine you personally need, whether a vaccine is safe for you, a reaction after a shot, or a bite abroad. Those questions belong to a doctor, nurse or pharmacist, or to emergency care. We answer questions about a figure, a date or a source.</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+  </div>
+</PageLayout>
