@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /*?*
 
-Sitemap: https://travel-vaccines.example/sitemap-index.xml
+Sitemap: https://vaccinesbycountry.com/sitemap-index.xml
