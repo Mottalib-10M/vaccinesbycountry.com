@@ -22,7 +22,9 @@ html { font-size: 17px; } body { line-height: 1.65; } .tabular-nums { font-varia
 .callout-info { border-left-color: #2563eb; background-color: #eff6ff; color: #1e3a8a; } .callout-tip { border-left-color: #15803d; background-color: #f0fdf4; color: #14532d; } .callout-warning { border-left-color: #b45309; background-color: #fffbeb; color: #78350f; } .callout-example { border-left-color: #64748b; background-color: #f8fafc; color: #1e293b; }
 
 /* Titres : césure selon la langue de la page, jamais de débordement sur mobile (RECETTE §10.3). */
-h1, h2, h3, h4 { hyphens: auto; overflow-wrap: break-word; }
+h1, h2, h3, h4 { overflow-wrap: break-word; }
+/* Césure seulement là où les mots composés débordent (« Versicherungspflichtverhältnis ») ; en anglais elle coupait « bid-ding » (sg-car-cost, 2026-10-24). */
+:is(:lang(de), :lang(nl), :lang(fi), :lang(sv), :lang(da), :lang(nb), :lang(no), :lang(is), :lang(hu), :lang(et)) :is(h1, h2, h3, h4) { hyphens: auto; }
 .prose p, .prose li { overflow-wrap: break-word; }
 
 /* Rythme vertical (RECETTE §10.3) : le contenu ne touche jamais le calculateur. */

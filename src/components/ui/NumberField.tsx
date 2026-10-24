@@ -13,7 +13,7 @@ export default function NumberField({ id, label, value, onChange, unit = '', min
   const selectPending = useRef(false);
   const guardMouseUp = useRef(false);
   useLayoutEffect(() => { if (selectPending.current) { selectPending.current = false; input.current?.select(); } });
-  const display = focused ? raw : (value === 0 ? '' : formatNumber(value, decimals));
+  const display = focused ? raw : (value === 0 ? '' : formatNumber(value, Number.isInteger(value) ? 0 : decimals)); // « 6 semaines », pas « 6.0 » (travel-vaccines, 2026-10-24)
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const filtered = e.target.value.replace(/[^0-9.,\s-]/g, '');
     setRaw(filtered);

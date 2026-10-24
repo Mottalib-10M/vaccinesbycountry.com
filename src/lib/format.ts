@@ -19,8 +19,8 @@ export function formatDecimal(value: number, max = 2): string {
   return nf({ maximumFractionDigits: max }).format(value);
 }
 export function formatPercent(value: number, decimals = 1): string {
-  // Toutes langues : espace insécable avant % (RECETTE §7) ; Intl n'en met pas en anglais (« 3.5% »).
-  return nf({ style: 'percent', minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value).replace(/(\d)\s?%/, '$1\u00a0%');
+  // Le format d'Intl fait foi : « 3.5% » en anglais, « 3,5 % » en français ; l'espace qu'il pose devient insécable (RECETTE §10.3, 2026-10-24).
+  return nf({ style: 'percent', minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value).replace(/(\d)\s%/, '$1\u00a0%');
 }
 export function parseLocaleNumber(input: string): number {
   const cleaned = input.replace(/[^\d.,-]/g, '');
