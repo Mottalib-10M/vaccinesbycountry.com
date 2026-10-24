@@ -126,7 +126,7 @@ for (const u of urls) {
   // le découpage avait pris l'ordinal de « 1. April » pour une fin de phrase.
   const court = await borne(desk.evaluate(() => [...document.querySelectorAll('.clamp p')].filter((p) => p.querySelector('.clamp-rest'))
     .map((p) => [...p.childNodes].filter((n) => !(n.classList && n.classList.contains('clamp-rest'))).map((n) => n.textContent).join('').trim())
-    .filter((t) => t.split(/\s+/).length < 4)).catch(() => []));  // une vraie phrase courte (« Morocco has a short CDC list. ») passe
+    .filter((t) => (/[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/.test(t) ? t.length < 8 : t.split(/\s+/).length < 4))).catch(() => []));  // une vraie phrase courte (« Morocco has a short CDC list. ») passe ; chinois, japonais, coréen : sans espaces, on compte les caractères
   if (court?.length) { fautes++; console.log(`✗ ${new URL(u).pathname}\n   - texte replié coupé trop tôt : « ${court[0]} » (découpage des phrases dans Clamp.astro)`); }
   const d = await borne(desk.evaluate(mesure).catch(() => null));
   if (!d) continue;

@@ -1,6 +1,6 @@
 /**
  * The calculators of the site, rendered by components/calc/SpecTool.tsx (full tool) and MiniSim.tsx (mini-simulator).
- * CDC levels come from src/data/dest.json (244 destination pages); prices from the fee schedules of 9 US public
+ * CDC levels come from src/data/dest.json (242 destination pages); prices from the fee schedules of 9 US public
  * health departments; tablets from the CDC Yellow Book regimens and NADAC. This file ships to the browser.
  */
 import type { ToolSpec, V, Input, ToolOut } from './tool-types';

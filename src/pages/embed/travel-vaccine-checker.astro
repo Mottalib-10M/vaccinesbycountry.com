@@ -3,6 +3,7 @@
 import '../../styles/global.css';
 import Tool from '../../components/Tool.astro';
 import { SITE_URL, SITE_NAMES } from '../../data/site-config';
+import LicenceNotice from '../../components/LicenceNotice.astro';
 ---
 <!doctype html>
 <html lang="en-US">
@@ -17,5 +18,6 @@ import { SITE_URL, SITE_NAMES } from '../../data/site-config';
   <body class="bg-white p-2 text-navy-900">
     <main><Tool kind="trip" idPrefix="embed" /></main>
     <p class="mt-2 text-center text-xs text-navy-600"><a href={`${SITE_URL}/en/`} target="_blank" rel="noopener" class="underline">{SITE_NAMES.en}</a> · advice levels from CDC destination pages, no endorsement by CDC implied · prices from US public health departments · not medical advice</p>
+    <LicenceNotice class="mt-1 text-center text-[11px] text-navy-600" />
   </body>
 </html>

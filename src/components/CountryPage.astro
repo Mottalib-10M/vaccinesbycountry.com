@@ -48,7 +48,7 @@ const sources = [{ name: `CDC Travelers' Health: ${d.name} (page last reviewed $
     <Body html={def.body(helpers())} path={path} />
     <section data-chrome class="mt-10 min-w-0 max-w-full overflow-x-auto" id="cdc">
       <h2 class="font-serif text-2xl font-bold text-navy-900">What CDC says for {d.name}, word for word</h2>
-      <p class="mt-2 text-sm text-navy-700">Source: CDC, Travelers' Health destination page for {d.name}, {d.reviewed ? `page last reviewed ${K.day(d.reviewed)}` : 'undated'}, read on {K.day(K.CDC_DATE)}. The text is reproduced without change; it is available free of charge on {ext(d.url, 'cdc.gov')}. Its use here does not imply endorsement by CDC, ATSDR, HHS or the United States Government.</p>
+      <p class="mt-2 text-sm text-navy-700">Source: CDC, Travelers' Health destination page for {d.name}, {d.reviewed ? `page last reviewed ${K.day(d.reviewed)}` : 'undated'}, read on {K.day(K.CDC_DATE)}. The text is reproduced without change; it is available free of charge on <Fragment set:html={ext(d.url, 'cdc.gov')} />. Its use here does not imply endorsement by CDC, ATSDR, HHS or the United States Government.</p>
       {d.notices.length > 0 && <p class="mt-3 text-sm text-navy-800"><strong>Travel notices:</strong> {d.notices.map((n, i) => <>{i > 0 && ' · '}<a href={n.url} target="_blank" rel="nofollow noopener noreferrer" class="underline">Level {n.level}, {n.title}</a>{n.date && ` (${K.day(n.date)})`}</>)}</p>}
       <div class="not-prose mt-4 overflow-x-auto">
         <table class="journal w-full table-fixed text-sm">

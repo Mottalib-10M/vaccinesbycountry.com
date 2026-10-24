@@ -1,6 +1,6 @@
 /**
  * The data asset, browser-safe: the compact CDC table (src/data/dest.json, built by scripts/build-data.mjs from the
- * 244 CDC destination pages), the self-pay fee schedules of 9 US public health departments, the CDC Yellow Book
+ * 242 CDC destination pages), the self-pay fee schedules of 9 US public health departments, the CDC Yellow Book
  * schedules, NADAC tablet costs, the CDC adult vaccine price list and the NHS free/paid list.
  * The verbatim CDC wording is NOT here: country pages read it at build time from data/destinations.json.
  */
@@ -24,7 +24,9 @@ export interface Compact {
 }
 export const DESTS = (DEST as unknown as { list: Compact[] }).list;
 export const CDC_RETRIEVED = (DEST as unknown as { retrieved: string }).retrieved;
-export const FEE_SOURCES = FEES.sources as unknown as FeeSource[];
+/** A schedule the department itself calls approximate (Miami-Dade, June 2025 file) says so wherever its name is shown. */
+export const FEE_SOURCES = (FEES.sources as unknown as FeeSource[]).map((f) => (/approximate/i.test(String((f as { unit?: string }).unit ?? ''))
+  ? { ...f, name: `${f.name} (approximate prices, ${String(f.date ?? '').slice(0, 4)} list)` } : f));
 export const FEES_RETRIEVED = FEES.retrieved_at;
 export const SCHEDULES = SCH.vaccines as unknown as (VaccineSchedule & { booster?: string; notes?: string; source_url: string; source_date: string })[];
 export const ANTIMALARIALS = SCH.antimalarials as unknown as Antimalarial[];

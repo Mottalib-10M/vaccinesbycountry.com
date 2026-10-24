@@ -1,0 +1,9 @@
+---
+/** Attributions exigées par les licences (audit données-droits du 2026-10-24, règle 3), en pied de toutes les pages, embeds compris. */
+interface Props { class?: string }
+const { class: cls = 'text-xs text-navy-500' } = Astro.props;
+---
+<p class={cls} data-licence-notice>
+  Source of CDC material: Centers for Disease Control and Prevention, Travelers' Health (<a class="underline" href="https://wwwnc.cdc.gov/travel" target="_blank" rel="noopener">cdc.gov/travel</a>); CDC does not endorse this site.
+  NHS information: contains public sector information licensed under the <a class="underline" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank" rel="noopener">Open Government Licence v3.0</a>.
+</p>
