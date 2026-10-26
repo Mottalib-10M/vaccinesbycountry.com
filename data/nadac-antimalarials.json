@@ -3,7 +3,7 @@
  "source_url": "https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704",
  "licence": "Public domain: https://www.usa.gov/publicdomain/label/1.0/",
  "note": "What retail pharmacies pay wholesalers per tablet, highest NDC of the latest weekly survey. The shelf price you pay is higher (dispensing fee and margin).",
- "retrieved_at": "2026-10-24",
+ "retrieved_at": "2026-10-26",
  "items": [
   {
    "drug": "atovaquone-proguanil",
