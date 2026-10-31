@@ -8,6 +8,9 @@ const yfAsk = rows.filter((r) => r.yfRule !== 'no');
 const mal = rows.filter((r) => r.malaria === 'tablets');
 const amazon = K.range(['hepA', 'yellowFever']);
 const yfp = K.price('yellowFever');
+const chikNames = (lv: string) => rows.filter((r) => K.d(r.s).d.chikungunya === lv).map((r) => r.n);
+const andList = (a: string[]) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join(', ')} and ${a[a.length - 1]}`);
+const chikC = chikNames('C'), chikS = chikNames('S');
 
 export default defineGuide({
   id: 'vaccines-for-south-america', group: 'trip', order: 31, slug: 'vaccines-for-south-america',
@@ -32,7 +35,7 @@ ${h.mini('trip', { t: 'Peru, then Brazil, then Paraguay', p: ['s1', 's2', 's3'],
 <p>A trip into the Amazon, from Iquitos, Puerto Maldonado, Manaus, Leticia or the Ecuadorian Oriente, sits in the yellow fever area, and CDC advises malaria tablets for it, with Plasmodium vivax and falciparum and resistance to chloroquine. Atovaquone-proguanil, doxycycline, mefloquine and tafenoquine are the usual drugs. The yellow fever shot, at ${K.usd(yfp.min)} to ${K.usd(yfp.max)} at US health departments, must be given ten days before arrival; the ${h.a('malaria-pills', 'malaria pills page')} counts the tablets.</p>
 ${h.mini('cost', { t: 'Amazon list priced', p: ['dept', 'typ'], d: { hepA: 'yes', typ: 'none', yellowFever: 'yes', drug: 'atovaquone-proguanil', td: 7 } })}
 <h2>Mosquitoes in the cities</h2>
-<p>Dengue, chikungunya and Zika are carried by the Aedes mosquitoes of towns and cities, from Rio to Asunción, and they bite during the day. CDC lists chikungunya vaccine as one to consider for stays of six months or more in most of the continent, and as recommended in an outbreak area, such as French Guiana on CDC's latest pages. No vaccine is offered to travelers for dengue or Zika, so repellent and covered skin protect against all three.</p>
+<p>Dengue, chikungunya and Zika are carried by the Aedes mosquitoes of towns and cities, from Rio to Asunción, and they bite during the day. ${chikC.length ? `CDC lists chikungunya vaccine as one to consider for stays of six months or more in ${andList(chikC)}` : 'CDC lists no South American country where chikungunya vaccine is to be considered for long stays'}${chikS.length ? `, and as recommended in an outbreak area, such as ${andList(chikS)} on CDC's latest pages` : ''}; elsewhere on the continent its pages say the vaccine is generally not recommended. No vaccine is offered to travelers for dengue or Zika, so repellent and covered skin protect against all three.</p>
 <h2>When to see the clinician</h2>
 <p>For an Amazon trip, the yellow fever shot sets the calendar: ten days before entering the risk area or the border that asks for it, at a designated center. Typhoid, where a clinician advises it, needs two weeks. Malaria tablets start one or two days before for the daily drugs, two weeks before for mefloquine. Four to six weeks before departure leaves room for all of them and for a clinic that gives yellow fever only on certain days. Travelers aged 60 and over who have never had the yellow fever vaccine should allow time for the longer discussion CDC asks clinicians to have at that age.</p>
 <p>The ${h.a('country:peru', 'Peru')}, ${h.a('country:brazil', 'Brazil')} and ${h.a('country:colombia', 'Colombia')} pages give the full detail of three common trips.</p>

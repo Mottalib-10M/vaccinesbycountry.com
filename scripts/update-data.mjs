@@ -81,6 +81,9 @@ function level(k, lines) {
   if (/all (eligible|international) travelers should/.test(t)) return 'most';
   if (/(is )?recommended for (any |some )?(travelers|people|adults|adult|children|some)/.test(t)) return 'some';
   if (/not recommended/.test(t) && !/consider/.test(t)) return 'notRecommended';
+  // « Chikungunya vaccination is generally not recommended. Travelers who wish to consider vaccination… » :
+  // the word « consider » there is not CDC's "may be considered" level (audit of 2026-10-28).
+  if (/generally not recommended/.test(t)) return 'notRecommended';
   if (/(may be )?consider/.test(t)) return 'consider';
   if (/pre-exposure vaccination considerations|consult with a healthcare provider/.test(t)) return 'consider';
   return 'info';

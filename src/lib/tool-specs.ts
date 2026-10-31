@@ -44,6 +44,13 @@ const YF_TEXT: Record<YfVerdict, string> = {
   considered: 'CDC: generally not recommended, may be considered',
   notNeeded: 'Not needed on this route',
 };
+const YF_SHORT: Record<YfVerdict, string> = { required: 'certificate required', requiredIfRiskOrigin: 'certificate if arriving from a risk country', recommended: 'vaccine recommended', considered: 'may be considered', notNeeded: '' };
+/** Countries of the yellow fever row; when their verdicts differ, each says its own (Kenya recommends, India checks the certificate). */
+function yfWhere(yf: Array<{ verdict: YfVerdict; country: string }>): string {
+  const on = yf.filter((y) => y.verdict !== 'notNeeded');
+  const mixed = new Set(on.map((y) => y.verdict)).size > 1;
+  return on.map((y) => (mixed ? `${y.country} (${YF_SHORT[y.verdict]})` : y.country)).join(', ');
+}
 
 /** Per-dose median price of a fee key, or null. */
 const med = (fee: string) => priceOf(fee)?.median ?? null;
@@ -94,7 +101,7 @@ function tripOut(v: V): ToolOut {
       caption: 'CDC level for each disease on this itinerary, strongest country first. The full CDC wording is on each country page.',
       headers: ['Disease', 'CDC level', 'Where', 'Start at least', 'Median price per dose'],
       rows: [
-        ...(yf.some((y) => y.verdict !== 'notNeeded') ? [['Yellow fever', YF_TEXT[(yf.find((y) => y.verdict === 'required') ?? yf.find((y) => y.verdict !== 'notNeeded'))!.verdict], yf.filter((y) => y.verdict !== 'notNeeded').map((y) => y.country).join(', '), `${days(10)} before`, med('yellowFever') ? usd(med('yellowFever')!) : '']] : []),
+        ...(yf.some((y) => y.verdict !== 'notNeeded') ? [['Yellow fever', YF_TEXT[(yf.find((y) => y.verdict === 'required') ?? yf.find((y) => y.verdict !== 'notNeeded'))!.verdict], yfWhere(yf), `${days(10)} before`, med('yellowFever') ? usd(med('yellowFever')!) : '']] : []),
         ...items.map((m) => {
           const sc = VAX_OF[m.disease] ? sched(VAX_OF[m.disease]) : null;
           const fee = sc?.fee ?? PRICE_ONLY[m.disease];
