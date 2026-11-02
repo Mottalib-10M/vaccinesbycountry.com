@@ -3,7 +3,7 @@
  "source_url": "https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704",
  "licence": "Public domain: https://www.usa.gov/publicdomain/label/1.0/",
  "note": "What retail pharmacies pay wholesalers per tablet, highest NDC of the latest weekly survey. The shelf price you pay is higher (dispensing fee and margin).",
- "retrieved_at": "2026-10-26",
+ "retrieved_at": "2026-11-02",
  "items": [
   {
    "drug": "atovaquone-proguanil",
@@ -12,7 +12,7 @@
    "per_unit_min_usd": 1.44997,
    "pricing_unit": "EA",
    "effective_date": "2026-10-21",
-   "as_of_date": "2026-10-21",
+   "as_of_date": "2026-10-28",
    "ndc_count": 9
   },
   {
@@ -22,7 +22,7 @@
    "per_unit_min_usd": 0.88804,
    "pricing_unit": "EA",
    "effective_date": "2026-10-21",
-   "as_of_date": "2026-10-21",
+   "as_of_date": "2026-10-28",
    "ndc_count": 2
   },
   {
@@ -32,7 +32,7 @@
    "per_unit_min_usd": 0.11995,
    "pricing_unit": "EA",
    "effective_date": "2026-10-21",
-   "as_of_date": "2026-10-21",
+   "as_of_date": "2026-10-28",
    "ndc_count": 40
   },
   {
@@ -42,7 +42,7 @@
    "per_unit_min_usd": 0.10794,
    "pricing_unit": "EA",
    "effective_date": "2026-10-21",
-   "as_of_date": "2026-10-21",
+   "as_of_date": "2026-10-28",
    "ndc_count": 21
   },
   {
@@ -52,7 +52,7 @@
    "per_unit_min_usd": 3.73125,
    "pricing_unit": "EA",
    "effective_date": "2026-10-21",
-   "as_of_date": "2026-10-21",
+   "as_of_date": "2026-10-28",
    "ndc_count": 3
   },
   {
@@ -62,7 +62,7 @@
    "per_unit_min_usd": 6.61183,
    "pricing_unit": "EA",
    "effective_date": "2026-10-21",
-   "as_of_date": "2026-10-21",
+   "as_of_date": "2026-10-28",
    "ndc_count": 4
   },
   {
@@ -72,7 +72,7 @@
    "per_unit_min_usd": 2.46296,
    "pricing_unit": "EA",
    "effective_date": "2026-10-21",
-   "as_of_date": "2026-10-21",
+   "as_of_date": "2026-10-28",
    "ndc_count": 2
   },
   {
