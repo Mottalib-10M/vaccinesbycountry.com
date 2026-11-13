@@ -11,7 +11,7 @@ export default defineGuide({
   title: 'Typhoid Vaccine 2026: Shot or Oral, Timing and Destinations',
   description: `Typhoid vaccine in 2026: the shot (2 weeks ahead, 2 years) or capsules (1 week, 5 years), the ${most.length} places CDC lists it for most travelers, and US prices.`,
   h1: 'Typhoid vaccine: the shot or the capsules',
-  intro: 'Choose the shot or the capsules and your departure: the checker gives the latest start date, how long the protection lasts and the published price.',
+  intro: 'Choose the typhoid shot or the capsules and your departure: the checker gives the latest start date, how long the protection lasts and the published price.',
   resume: `There are two typhoid vaccines in the United States, and both work against the same disease: Salmonella Typhi, caught from food or water. The injectable Vi vaccine is one shot, given at least two weeks before travel from the age of 2, and it protects for about two years. The oral Ty21a vaccine is four capsules, one every other day, finished at least a week before travel, from the age of 6; it protects for five years, but it is a live vaccine, it must stay in the refrigerator, and antibiotics can cancel it. Both protect 50 to 80 percent of those who receive them, so food and water care still counts. CDC lists the vaccine for most travelers to ${K.num(most.length)} destinations, with South Asia at the top of the risk, and as an option to consider for ${K.num(consider.length)} more. At US county health departments the shot costs a median of ${K.usd(inj.median)} and the capsules ${K.usd(oral.median)}.`,
   body: (h) => `
 <h2>Where CDC lists it</h2>

@@ -10,7 +10,7 @@ export default defineGuide({
   title: 'Rabies Vaccine for Travel 2026: Two Doses, Who and Cost',
   description: `Rabies vaccine for travel in 2026: 2 doses a week apart, who CDC asks to discuss it, what changes after a bite abroad, and the published US price of the series.`,
   h1: 'Rabies vaccine before travel: what it does and what it costs',
-  intro: 'Set the weeks before departure: the checker shows whether the two doses fit, their dates and the price of the series at public price lists.',
+  intro: 'Set the weeks before departure: the checker shows whether the two rabies vaccine doses fit, their dates and the price of the series at public price lists.',
   resume: `Rabies vaccine before a trip, called pre-exposure prophylaxis, is two shots given on day 0 and day 7. It does not replace care after a bite, but it changes what that care needs: a vaccinated traveler who is bitten receives two more doses three days apart and no rabies immune globulin, while an unvaccinated traveler needs immune globulin plus four doses over two weeks. That difference matters because, as CDC's Yellow Book notes, rabies immune globulin is not available in many low- and middle-income countries. CDC's destination pages ask travelers to every one of the ${K.num(K.dests.length)} destinations they cover to discuss pre-exposure vaccination with a healthcare provider, weighing activities that bring contact with animals and how quickly safe treatment could be reached. It is one of the costlier lines of a list: ${K.usd(p.min)} to ${K.usd(p.max)} a dose at the ${K.num(p.n)} health departments that publish a price, so ${K.usd(series.min)} to ${K.usd(series.max)} for the series with their fees.`,
   body: (h) => `
 <h2>Why the shots before the trip matter after a bite</h2>
@@ -18,7 +18,7 @@ export default defineGuide({
 <h2>Who CDC asks to discuss it</h2>
 <p>On each country page, CDC frames the decision around two questions: whether the traveler will do occupational or recreational activities that raise the risk of exposure to potentially rabid animals, and whether they might have difficulty getting prompt access to safe post-exposure care. The Yellow Book names groups for whom it is considered: animal handlers, field biologists, cavers, missionaries, veterinarians and some laboratory workers. Long stays, remote travel, cycling and running (dogs chase), and children, who play with animals and may not report a bite, are the situations clinicians usually raise. In many countries in Africa, Asia and Latin America dogs are the main source; bats can carry rabies anywhere, including where dogs are vaccinated.</p>
 ${h.mini('trip', { t: 'What CDC says about rabies for your destination', p: ['s1'], d: { s1: 'kenya' } })}
-<h2>The schedule</h2>
+<h2>The rabies vaccine schedule</h2>
 <p>Two intramuscular doses of human diploid cell vaccine or purified chick embryo cell vaccine, given on day 0 and day 7, complete the pre-exposure series. The second dose must be in before the trip, so the series starts at least ${K.num(K.lead('rabies'))} days before departure. The Yellow Book says data support about three years of protection; people with a sustained risk beyond that, such as a long posting or work with animals, either have an antibody titer checked between one and three years after the series or receive a third dose, given between day 21 and the end of year three.</p>
 ${h.mini('vaccine', { t: 'Rabies series: dates and price', p: ['wk', 'dept'], d: { vx: 'rabies', wk: 2 } })}
 <h2>What it costs, and how to think about it</h2>

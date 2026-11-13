@@ -18,10 +18,10 @@ export default defineGuide({
   title: 'Vaccines for South America 2026: Yellow Fever by Country',
   description: `Vaccines for South America in 2026: the CDC list for ${rows.length} countries in one table, yellow fever by area and at the border, Amazon malaria and the US prices.`,
   h1: 'Vaccines for South America',
-  intro: 'Enter up to three stops in order, for example Peru then Brazil: the checker applies each country\'s yellow fever rule to the route and builds the list.',
+  intro: 'Enter up to three stops in order, for example Peru then Brazil: the checker applies each country\'s yellow fever rule to the route and builds the vaccine list for South America.',
   resume: `In South America the travel list turns on one vaccine: yellow fever. CDC recommends it, for the whole country or for listed areas, in ${K.num(yfRec.length)} of the ${K.num(rows.length)} countries, from the Amazon basin to the provinces of Corrientes and Misiones in Argentina; only Chile and Uruguay are outside. The areas are drawn precisely: in Peru the Amazon lowlands but not Lima, Cusco or Machu Picchu; in Brazil most states, Rio de Janeiro, São Paulo and Iguaçu Falls included, but not Fortaleza or Recife. At the border, ${K.num(yfAsk.length)} countries ask for the certificate under some rule, and Bolivia, Colombia and French Guiana ask every traveler. Hepatitis A is listed for most travelers everywhere; typhoid is mostly a vaccine to consider, for longer stays or rural trips. CDC advises malaria tablets for ${K.num(mal.length)} countries, mostly for the Amazon. Chikungunya vaccine may be considered for long stays in most of the continent. Hepatitis A and yellow fever, a common Amazon pair, cost ${K.usd(amazon.min)} to ${K.usd(amazon.max)} with fees at US health departments.`,
   body: (h) => `
-<h2>The table</h2>
+<h2>Vaccines for South America: the table</h2>
 <p>Each row gives CDC's level for hepatitis A and typhoid, its yellow fever advice, the border rule and the malaria advice. A yellow fever line that says some areas means the CDC page names regions, altitudes or cities; the country pages on this site quote them in full.</p>
 ${h.table(['Country', 'Hepatitis A', 'Typhoid', 'Yellow fever advice', 'Certificate asked of', 'Malaria'], rows.map((r) => [h.cdc(r.s, r.n), r.hepA, r.typhoid, r.yfRec, r.yfRule, r.malaria]), `CDC destination pages, read up to ${K.day(K.CDC_DATE)}.`, ['l', 'l', 'l', 'l', 'l', 'l'])}
 <h2>Yellow fever: where, and at which border</h2>

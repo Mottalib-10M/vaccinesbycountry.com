@@ -11,7 +11,7 @@ export default defineGuide({
   title: 'Cholera Vaccine 2026: Vaxchora, Who It Is For, Timing, Price',
   description: `Cholera vaccine in 2026: one oral dose of Vaxchora 10 days before exposure, the ${consider.length} destinations with active transmission on CDC pages, food rules and US prices.`,
   h1: 'Cholera vaccine: one oral dose, for some trips',
-  intro: 'Set your departure: the checker says whether the single oral dose still fits ten days ahead and what it costs at public price lists.',
+  intro: 'Set your departure: the checker says whether the single oral cholera dose still fits ten days ahead and what it costs at public price lists.',
   resume: `The cholera vaccine sold in the United States, Vaxchora, is a single oral dose: a liquid drunk at least ${K.num(K.lead('cholera'))} days before possible exposure, with no food or drink for 60 minutes before and after. It is licensed for ages 2 to 64. CDC does not recommend it for most travelers from the United States, because cholera is rare in travelers; the Yellow Book recommends it for travelers going to areas of active cholera transmission, and CDC's destination pages say vaccination may be considered for ${K.num(consider.length)} destinations where such areas exist, from Haiti to Yemen and much of eastern and southern Africa. Each page names the areas and how recently the last case was reported. In trials among adults of 18 to 45, the vaccine prevented 90 percent of severe diarrhea at 10 days and 80 percent at 3 months. At the ${K.num(p.n)} health departments that publish a price, the dose costs ${K.usd(p.min)} to ${K.usd(p.max)}, median ${K.usd(p.median)}.`,
   body: (h) => `
 <h2>Where CDC mentions it</h2>

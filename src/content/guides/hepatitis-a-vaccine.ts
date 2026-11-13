@@ -12,7 +12,7 @@ export default defineGuide({
   title: 'Hepatitis A Vaccine 2026: Doses, Schedule, Who Needs It',
   description: `Hepatitis A vaccine in 2026: 2 doses 6 months apart, Twinrix for A and B, who CDC lists it for, the ${most.length} places listed for most travelers, and US prices.`,
   h1: 'Hepatitis A vaccine: doses, schedule and who it is for',
-  intro: 'Set your departure and age: the checker shows the dose to have before the trip, the one that can wait, and what each costs at public price lists.',
+  intro: 'Set your departure and age: the checker shows the hepatitis A dose to have before the trip, the one that can wait, and what each costs at public price lists.',
   resume: `The hepatitis A vaccine is given in two doses at least six months apart, and the first dose alone already protects most people within a month: CDC's Yellow Book reports that more than 90 percent of vaccinated people have protective antibody levels one month after it. In the United States it is a routine childhood vaccine at 12 to 23 months, with catch-up to age 18, and CDC asks adults at higher risk to prioritize it: international travelers, people experiencing homelessness, people who use drugs and men who have sex with men, plus people with chronic liver disease or HIV, who risk a more serious illness. For travel, CDC lists it for most travelers to ${K.num(most.length)} of the ${K.num(K.dests.length)} destinations it covers. A dose costs ${K.usd(lp.price)} at the CDC private-sector list price and a median of ${K.usd(p.median)} at the ${K.num(p.n)} county health departments that publish a self-pay price; the combined hepatitis A and B vaccine, Twinrix, takes three doses.`,
   body: (h) => `
 <h2>What the vaccine protects against</h2>

@@ -12,7 +12,7 @@ export default defineGuide({
   title: 'Yellow Fever Vaccine Cost 2026: Prices at Health Departments',
   description: `Yellow fever vaccine cost in 2026: ${K.usd(p.min)} to ${K.usd(p.max)} a dose at ${p.n} US health departments that publish a price, the visit fees on top, insurance and the certificate.`,
   h1: 'Yellow fever vaccine cost',
-  intro: 'Pick a health department: the calculator adds its visit and administration fees to the yellow fever shot and shows the total for one visit.',
+  intro: 'Pick a health department: the calculator adds its visit and administration fees to the yellow fever shot and shows the total cost for one visit.',
   resume: `The yellow fever vaccine is one of the most expensive single shots on a travel list. At the ${K.num(p.n)} US county and city health departments whose self-pay price lists were read for this site, one dose costs ${K.usd(p.min)} to ${K.usd(p.max)}, with a median of ${K.usd(p.median)}. Some of them add a consultation or administration fee, which puts the total for one visit at ${K.usd(r.min)} to ${K.usd(r.max)}. Because one dose protects most people for life and the certificate is valid for life, it is usually a one-time cost. The vaccine is not on the CDC private-sector price list, and it can be given only at clinics designated by a state health department, so the price of a private travel clinic is set by the clinic and rarely published. Health insurance seldom covers travel-only vaccines, though some plans do; asking the plan before the visit is the first step. Every price below carries the date and the link of the list it comes from.`,
   body: (h) => `
 <h2>The published prices, department by department</h2>

@@ -18,10 +18,10 @@ export default defineGuide({
   title: 'Vaccines for Southeast Asia 2026: CDC List for 11 Countries',
   description: `Vaccines for Southeast Asia in 2026: CDC's list for ${rows.length} countries in one table, Japanese encephalitis, malaria in border areas, yellow fever transits, US prices.`,
   h1: 'Vaccines for Southeast Asia',
-  intro: 'Enter up to three stops, such as Thailand, Cambodia and Vietnam: the checker builds the CDC list for the route, the latest start dates and the price.',
+  intro: 'Enter up to three stops in Southeast Asia, such as Thailand, Cambodia and Vietnam: the checker builds the CDC vaccine list for the route, the latest start dates and the price.',
   resume: `Southeast Asia shares one list with local variations. Across the ${K.num(rows.length)} countries, CDC lists hepatitis A for most travelers almost everywhere and typhoid for most travelers to ${K.num(tyMost.length)}, Singapore and Brunei being the main exceptions. Japanese encephalitis is listed for some travelers in ${K.num(je.length)} of them: long stays, rural trips in the season, nights without screens. Rabies is common in dogs and monkeys and is a vaccine to discuss for every country. CDC advises malaria tablets for ${K.num(mal.length)}, but on most of their pages the risk is limited to forested border areas, provinces or islands far from the usual tourist routes, and the Mekong countries add mefloquine resistance. Yellow fever does not exist in the region, yet ${K.num(yfFrom.length)} countries ask for the certificate from travelers who come from a country with risk, sometimes after a long transit. Hepatitis A and typhoid cost ${K.usd(basic.min)} to ${K.usd(basic.max)} with fees at US health departments; adding Japanese encephalitis brings it to ${K.usd(withJe.min)} to ${K.usd(withJe.max)}.`,
   body: (h) => `
-<h2>The table</h2>
+<h2>Vaccines for Southeast Asia: the table</h2>
 <p>For each country, CDC's level for hepatitis A and typhoid, its yellow fever advice and border rule, and whether it advises malaria tablets somewhere in the country. The country pages on this site quote CDC's full text, which is where the malaria areas are named.</p>
 ${h.table(['Country', 'Hepatitis A', 'Typhoid', 'Yellow fever advice', 'Certificate asked of', 'Malaria'], rows.map((r) => [h.cdc(r.s, r.n), r.hepA, r.typhoid, r.yfRec, r.yfRule, r.malaria]), `CDC destination pages, read up to ${K.day(K.CDC_DATE)}.`, ['l', 'l', 'l', 'l', 'l', 'l'])}
 <h2>Japanese encephalitis: the regional question</h2>
