@@ -25,7 +25,7 @@ const T0 = '2026-01-01';
 const depOf = (weeks: number) => { const d = new Date(Date.parse(`${T0}T00:00:00Z`) + Math.round(weeks * 7) * 86_400_000); return d.toISOString().slice(0, 10); };
 const spanOf = (sc: VaccineSchedule, age: number) => { const p = plan([sc], T0, '2030-01-01', age)[0]; return Math.round((Date.parse(`2030-01-01T00:00:00Z`) - Date.parse(`${p.startBy}T00:00:00Z`)) / 86_400_000); };
 
-const ORIGIN_OPTS = [{ value: 'none', label: 'A country with no yellow fever risk (US, UK, Canada, Australia…)' }, ...DEST_OPTS];
+const ORIGIN_OPTS = [{ value: 'none', label: 'No yellow fever risk (US, UK…)' }, ...DEST_OPTS];
 const STOP_OPTS = [{ value: 'none', label: 'No other country' }, ...DEST_OPTS];
 const DEPT_OPTS = [{ value: 'all', label: `All ${FEE_SOURCES.length} health departments (median)` }, ...FEE_SOURCES.map((f) => ({ value: f.id, label: `${f.name}, ${f.state}` }))];
 const YN = [{ value: 'no', label: 'No' }, { value: 'yes', label: 'Yes' }];
